@@ -1,0 +1,33 @@
+@keyframes slideUp {
+    from {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+  }
+  
+  .carousel-item {
+    position: absolute;
+    width: 100%;
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  .carousel-item.outgoing {
+    animation: slideDown 0.5s ease-in forwards;
+  }
+  
+  
