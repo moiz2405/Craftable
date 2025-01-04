@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { useRouter } from 'next/navigation';  // For navigation
-import { useSiteContext } from '../../context/SiteContext';
+import { useRouter } from 'next/navigation';
 
 interface Option {
     label: string;
@@ -15,7 +14,7 @@ const options: Option[] = [
     { label: 'E-commerce Site', status: 'Upcoming' },
     { label: 'Business Site', status: 'Upcoming' },
     { label: 'Blog Site', status: 'Upcoming' },
-    { label: 'Landing Page', status: 'Upcoming' }
+    { label: 'Landing Page', status: 'Upcoming' },
 ];
 
 const siteNameMapping: { [key: string]: string } = {
@@ -26,12 +25,15 @@ const siteNameMapping: { [key: string]: string } = {
     'Landing Page': 'landing-page',
 };
 
-export default function Hero() {
+interface HeroProps {
+    onSelectSite: (site: string) => void; // Prop for communicating site selection
+}
+
+export default function Hero({ onSelectSite }: HeroProps) {
     const [selectedOption, setSelectedOption] = useState<string>('');
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-    const { setSelectedSite } = useSiteContext();  // Access Site context
-    const router = useRouter();  // Next.js router for navigation
+    const router = useRouter();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -41,34 +43,28 @@ export default function Hero() {
     }, []);
 
     const handleSelect = (option: Option): void => {
-        console.log('Selected option:', option.label); // Confirm the correct option
-        setSelectedOption(option.label); // Update local state
-        setSelectedSite(option.label); // Update context state
+        setSelectedOption(option.label);
+        onSelectSite(option.label); // Communicate selection to parent
         setShowDropdown(false);
     };
 
-
-
-
     const handleGetStarted = (): void => {
-        const siteSlug = siteNameMapping[selectedOption || options[currentIndex].label] || 'portfolio';
-        setSelectedSite(siteSlug);  // Set selected site context
-        router.push(`/craft`);  // Redirect to craft page with the selected site
+        const selectedSite = selectedOption || options[currentIndex].label; // Use the original label
+        onSelectSite(selectedSite); // Communicate selection to parent
+        router.push(`/craft?site=${encodeURIComponent(selectedSite)}`); // Pass the original label
     };
+
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black flex flex-col items-center justify-center text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-20 pointer-events-none"></div>
-
             <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-center z-10">
-                Make your Website
-                with <span className='font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'>Craftable</span>
+                Websites Made
+                <span className='font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600'> Craftable</span>
             </h1>
-
             <p className="text-2xl md:text-2xl text-center mb-8 z-10 max-w-2xl text-purple-300 font-bold">
                 Create, customize, and deploy your site in minutes.
             </p>
-
             <div className="relative w-full max-w-2xl mx-auto mb-8 z-10">
                 <div
                     className="flex items-center bg-white bg-opacity-10 rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow cursor-pointer"
@@ -82,27 +78,29 @@ export default function Hero() {
                             readOnly
                             className="w-full bg-transparent border-none focus:outline-none text-2xl font-semibold cursor-pointer"
                         />
-                        <ChevronDown
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300"
-                        />
+                        <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300" />
                         {showDropdown && (
-                            <ul className="absolute top-full left-0 w-full bg-purple-800 bg-opacity-95 rounded-md mt-2 py-2 z-40 shadow-lg">
+                            <ul
+                                className="absolute top-full left-0 w-full bg-purple-800 bg-opacity-95 border border-purple-700 rounded-md mt-2 py-2 z-40 shadow-lg transition-transform duration-150 ease-in-out transform scale-95"
+                            >
                                 {options.map((option, index) => (
                                     <li
                                         key={index}
-                                        className="px-4 py-2 hover:bg-purple-700 cursor-pointer flex justify-between items-center transition-colors text-white"
-                                        onClick={() => handleSelect(option)}
+                                        className={`px-4 py-2 ${option.status === 'Upcoming' ? 'opacity-50 cursor-not-allowed' : 'hover:bg-purple-700 cursor-pointer'
+                                            } flex justify-between items-center transition-colors text-white`}
+                                        onClick={() => option.status !== 'Upcoming' && handleSelect(option)}
                                     >
                                         <span>{option.label}</span>
                                         <span className="text-sm text-gray-400">{option.status}</span>
                                     </li>
+
                                 ))}
                             </ul>
+
                         )}
                     </div>
                 </div>
             </div>
-
             <div className="flex space-x-4">
                 <button
                     className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-colors"
