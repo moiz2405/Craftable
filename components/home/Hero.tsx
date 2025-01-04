@@ -1,34 +1,60 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { useRouter } from 'next/navigation';  // For navigation
+import { useSiteContext } from '../../context/SiteContext';
 
-const options = [
+interface Option {
+    label: string;
+    status: string;
+}
+
+const options: Option[] = [
     { label: 'Portfolio', status: 'Available' },
     { label: 'E-commerce Site', status: 'Upcoming' },
     { label: 'Business Site', status: 'Upcoming' },
     { label: 'Blog Site', status: 'Upcoming' },
     { label: 'Landing Page', status: 'Upcoming' }
-]
+];
+
+const siteNameMapping: { [key: string]: string } = {
+    'Portfolio': 'portfolio',
+    'E-commerce Site': 'ecommerce-site',
+    'Business Site': 'business-site',
+    'Blog Site': 'blog-site',
+    'Landing Page': 'landing-page',
+};
 
 export default function Hero() {
-    const [selectedOption, setSelectedOption] = useState('')
-    const [showDropdown, setShowDropdown] = useState(false)
-    const [currentIndex, setCurrentIndex] = useState(0)
+    const [selectedOption, setSelectedOption] = useState<string>('');
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
+    const { setSelectedSite } = useSiteContext();  // Access Site context
+    const router = useRouter();  // Next.js router for navigation
 
     useEffect(() => {
-        if (!selectedOption) {
-            const interval = setInterval(() => {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % options.length)
-            }, 2000)
-            return () => clearInterval(interval)
-        }
-    }, [selectedOption])
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % options.length);
+        }, 2000);
+        return () => clearInterval(interval);
+    }, []);
 
-    const handleSelect = (option) => {
-        setSelectedOption(option.label)
-        setShowDropdown(false)
-    }
+    const handleSelect = (option: Option): void => {
+        console.log('Selected option:', option.label); // Confirm the correct option
+        setSelectedOption(option.label); // Update local state
+        setSelectedSite(option.label); // Update context state
+        setShowDropdown(false);
+    };
+
+
+
+
+    const handleGetStarted = (): void => {
+        const siteSlug = siteNameMapping[selectedOption || options[currentIndex].label] || 'portfolio';
+        setSelectedSite(siteSlug);  // Set selected site context
+        router.push(`/craft`);  // Redirect to craft page with the selected site
+    };
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black flex flex-col items-center justify-center text-white relative overflow-hidden">
@@ -78,7 +104,10 @@ export default function Hero() {
             </div>
 
             <div className="flex space-x-4">
-                <button className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-colors">
+                <button
+                    className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-colors"
+                    onClick={handleGetStarted}
+                >
                     Get Started
                 </button>
                 <button className="px-6 py-3 rounded-md border border-white text-white font-semibold hover:bg-white hover:text-purple-900 transition-colors">
@@ -86,5 +115,5 @@ export default function Hero() {
                 </button>
             </div>
         </div>
-    )
+    );
 }
