@@ -10,46 +10,41 @@ export default function HeroSection({ style, onStyleChange }: HeroSectionProps) 
         switch (style) {
             case 'style1':
                 return (
-                    <div className="text-center">
-                        <h2 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h2>
-                        <p className="text-xl mb-6">I'm a passionate developer creating amazing web experiences.</p>
-                        <Button>Contact Me</Button>
+                    <div className="text-center bg-gradient-to-r from-blue-500 to-purple-500 p-10 rounded-lg shadow-lg">
+                        <h2 className="text-5xl font-extrabold text-white mb-4">Welcome to My Portfolio</h2>
+                        <p className="text-2xl text-gray-200 mb-6">I'm a passionate developer creating amazing web experiences.</p>
+                        <Button className="bg-white text-blue-500 hover:bg-gray-100">Contact Me</Button>
                     </div>
                 );
             case 'style2':
                 return (
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between bg-gray-100 p-10 rounded-lg shadow-lg">
                         <div className="w-1/2">
-                            <h2 className="text-4xl font-bold mb-4">Hi, I'm John Doe</h2>
-                            <p className="text-xl mb-6">Full-stack developer with a love for clean code and innovative solutions.</p>
-                            <Button>View My Work</Button>
+                            <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Hi, I'm John Doe</h2>
+                            <p className="text-2xl text-gray-600 mb-6">Full-stack developer with a love for clean code and innovative solutions.</p>
+                            <Button className="bg-blue-500 text-white hover:bg-blue-600">View My Work</Button>
                         </div>
                         <div className="w-1/2">
-                            <img src="/placeholder.svg?height=300&width=300" alt="John Doe" className="rounded-full mx-auto" />
+                            <img src="/path/to/image.jpg" alt="John Doe" className="rounded-lg shadow-lg" />
                         </div>
                     </div>
                 );
             case 'style3':
                 return (
-                    <div className="relative">
-                        <img src="/placeholder.svg?height=400&width=800" alt="Background" className="w-full h-64 object-cover" />
-                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                            <div className="text-center">
-                                <h2 className="text-4xl font-bold mb-4">Crafting Digital Experiences</h2>
-                                <p className="text-xl mb-6">Web Developer | UI/UX Designer | Tech Enthusiast</p>
-                                <Button>Explore My Projects</Button>
-                            </div>
-                        </div>
+                    <div className="text-center bg-white p-10 rounded-lg shadow-lg">
+                        <h2 className="text-5xl font-extrabold text-gray-800 mb-4">Explore My Projects</h2>
+                        <p className="text-2xl text-gray-600 mb-6">Discover the innovative solutions and projects I've worked on.</p>
+                        <Button className="bg-purple-500 text-white hover:bg-purple-600">See Projects</Button>
                     </div>
                 );
+            default:
+                return null;
         }
     };
 
     return (
-        <section>
-            <h3 className="text-2xl font-bold mb-4">Hero Section</h3>
-            {/* Removed Style Buttons */}
+        <div>
             {renderContent()}
-        </section>
+        </div>
     );
 }
