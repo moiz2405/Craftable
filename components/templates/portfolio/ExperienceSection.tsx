@@ -15,46 +15,46 @@ export default function ExperienceSection({ style }: ExperienceSectionProps) {
                 return (
                     <div className="space-y-6">
                         {experiences.map((exp, index) => (
-                            <div key={index} className="bg-purple-800 p-6 rounded-lg">
-                                <h4 className="text-xl font-bold">{exp.company}</h4>
-                                <p className="text-lg">{exp.role}</p>
-                                <p className="text-sm text-gray-300">{exp.period}</p>
+                            <div key={index} className="bg-purple-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+                                <h4 className="text-xl font-bold text-white">{exp.company}</h4>
+                                <p className="text-lg text-gray-200">{exp.role}</p>
+                                <p className="text-sm text-gray-400">{exp.period}</p>
                             </div>
                         ))}
                     </div>
                 );
             case 'style2':
                 return (
-                    <div className="relative border-l-4 border-purple-500 pl-6 ml-6">
+                    <div className="relative border-l-4 border-purple-500 pl-6 ml-6 space-y-6">
                         {experiences.map((exp, index) => (
-                            <div key={index} className="mb-8 relative">
-                                <div className="absolute -left-10 w-4 h-4 bg-purple-500 rounded-full mt-2"></div>
-                                <h4 className="text-xl font-bold">{exp.company}</h4>
-                                <p className="text-lg">{exp.role}</p>
-                                <p className="text-sm text-gray-300">{exp.period}</p>
+                            <div key={index} className="bg-white p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+                                <h4 className="text-xl font-bold text-purple-800">{exp.company}</h4>
+                                <p className="text-lg text-gray-800">{exp.role}</p>
+                                <p className="text-sm text-gray-600">{exp.period}</p>
                             </div>
                         ))}
                     </div>
                 );
             case 'style3':
                 return (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {experiences.map((exp, index) => (
-                            <div key={index} className="bg-purple-800 p-6 rounded-lg text-center">
-                                <h4 className="text-xl font-bold mb-2">{exp.company}</h4>
-                                <p className="text-lg mb-2">{exp.role}</p>
+                            <div key={index} className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+                                <h4 className="text-xl font-bold text-white">{exp.company}</h4>
+                                <p className="text-lg text-gray-200">{exp.role}</p>
                                 <p className="text-sm text-gray-300">{exp.period}</p>
                             </div>
                         ))}
                     </div>
                 );
+            default:
+                return null;
         }
     };
 
     return (
-        <section>
-            <h3 className="text-2xl font-bold mb-4">Experience Section</h3>
+        <div>
             {renderContent()}
-        </section>
+        </div>
     );
 }
