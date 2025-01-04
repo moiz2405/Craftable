@@ -1,0 +1,17 @@
+{
+    "portfolio": [
+        {
+            "id": 1,
+            "name": "Template One",
+            "description": "A great starting point for your portfolio.",
+            "image": "/images/template1.png"
+        },
+        {
+            "id": 2,
+            "name": "Template Two",
+            "description": "Another fantastic design for portfolios.",
+            "image": "/images/template2.png"
+        }
+    ],
+    "custom": []
+}
