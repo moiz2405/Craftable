@@ -1,13 +1,18 @@
+'use client';
 
-import Hero from '../components/home/Hero'
-import { SiteProvider } from '../context/SiteContext';
-export default function Home() {
+import React, { useState } from 'react';
+import Hero from '../components/home/Hero';
+
+export default function Page() {
+  const [selectedSite, setSelectedSite] = useState<string>('');
+
+  const handleSiteSelection = (site: string) => {
+    setSelectedSite(site);
+  };
+
   return (
-    <main className="min-h-screen bg-black text-white">
-      <SiteProvider>
-        <Hero /> {/* Wrap Hero with SiteProvider */}
-      </SiteProvider>
-    </main>
-  )
+    <div>
+      <Hero onSelectSite={handleSiteSelection} />
+    </div>
+  );
 }
-
