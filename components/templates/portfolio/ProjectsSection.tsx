@@ -1,11 +1,8 @@
-import { Button } from "@/components/ui/button";
-
 interface ProjectsSectionProps {
     style: 'style1' | 'style2' | 'style3';
-    onStyleChange: (style: 'style1' | 'style2' | 'style3') => void;
 }
 
-export default function ProjectsSection({ style, onStyleChange }: ProjectsSectionProps) {
+export default function ProjectsSection({ style }: ProjectsSectionProps) {
     const projects = [
         { title: 'E-commerce Platform', description: 'A full-stack online shopping platform' },
         { title: 'Task Management App', description: 'A React-based productivity application' },
@@ -63,13 +60,7 @@ export default function ProjectsSection({ style, onStyleChange }: ProjectsSectio
     return (
         <section>
             <h3 className="text-2xl font-bold mb-4">Projects Section</h3>
-            <div className="mb-4">
-                <Button onClick={() => onStyleChange('style1')} variant={style === 'style1' ? 'default' : 'outline'} className="mr-2">Style 1</Button>
-                <Button onClick={() => onStyleChange('style2')} variant={style === 'style2' ? 'default' : 'outline'} className="mr-2">Style 2</Button>
-                <Button onClick={() => onStyleChange('style3')} variant={style === 'style3' ? 'default' : 'outline'}>Style 3</Button>
-            </div>
             {renderContent()}
         </section>
     );
 }
-
