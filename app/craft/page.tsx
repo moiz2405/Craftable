@@ -1,16 +1,17 @@
 // app/craft/page.tsx
+'use client';
 
 import React from 'react';
-import { SiteProvider } from '../../context/SiteContext';
+import { useSearchParams } from 'next/navigation';
 import CraftSite from '../../components/craft/CraftSite';
 
-function Page() {
+export default function Page() {
+    const searchParams = useSearchParams();
+    const selectedSite = searchParams.get('site') || 'Portfolio'; // Default to 'Portfolio' if no site is selected.
+
     return (
-        <SiteProvider>
-            <CraftSite />
-        </SiteProvider>
+        <div>
+            <CraftSite selectedSite={selectedSite} />
+        </div>
     );
 }
-
-export default Page;
-
