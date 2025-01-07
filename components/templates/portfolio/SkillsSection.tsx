@@ -29,9 +29,9 @@ export default function SkillsSection({ style }: SkillsSectionProps) {
                 );
             case 'style3':
                 return (
-                    <div className="flex flex-col items-center space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {skills.map((skill, index) => (
-                            <div key={index} className="bg-purple-800 px-6 py-3 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+                            <div key={index} className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
                                 <span className="text-white font-semibold">{skill}</span>
                             </div>
                         ))}
