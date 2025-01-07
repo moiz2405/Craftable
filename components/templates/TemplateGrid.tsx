@@ -17,17 +17,73 @@ interface PortfolioTemplateProps {
     style: StyleType;
     onSelect: () => void;
     isSelected: boolean;
+    components: React.ComponentType[];
 }
 
 const templates = [
-    { label: 'Portfolio', status: 'Available' },
-    { label: 'E-commerce Site', status: 'Upcoming' },
-    { label: 'Business Site', status: 'Upcoming' },
-    { label: 'Blog Site', status: 'Upcoming' },
-    { label: 'Landing Page', status: 'Upcoming' },
+    {
+        label: 'Portfolio',
+        status: 'Available',
+        components: [
+            HeroSection,
+            SkillsSection,
+            ProjectsSection,
+            ExperienceSection,
+            TestimonialsSection,
+            ContactSection
+        ]
+    },
+    {
+        label: 'E-commerce Site',
+        status: 'Upcoming',
+        components: [
+            HeroSection,
+            SkillsSection,
+            ProjectsSection,
+            ExperienceSection,
+            TestimonialsSection,
+            ContactSection
+        ]
+    },
+    {
+        label: 'Business Site',
+        status: 'Upcoming',
+        components: [
+            HeroSection,
+            SkillsSection,
+            ProjectsSection,
+            ExperienceSection,
+            TestimonialsSection,
+            ContactSection
+        ]
+    },
+    {
+        label: 'Blog Site',
+        status: 'Upcoming',
+        components: [
+            HeroSection,
+            SkillsSection,
+            ProjectsSection,
+            ExperienceSection,
+            TestimonialsSection,
+            ContactSection
+        ]
+    },
+    {
+        label: 'Landing Page',
+        status: 'Upcoming',
+        components: [
+            HeroSection,
+            SkillsSection,
+            ProjectsSection,
+            ExperienceSection,
+            TestimonialsSection,
+            ContactSection
+        ]
+    },
 ];
 
-function PortfolioTemplate({ style, onSelect, isSelected }: PortfolioTemplateProps) {
+function PortfolioTemplate({ style, onSelect, isSelected, components }: PortfolioTemplateProps) {
     return (
         <motion.div
             whileHover={{ scale: 1.05 }}
@@ -35,12 +91,9 @@ function PortfolioTemplate({ style, onSelect, isSelected }: PortfolioTemplatePro
         >
             <Card className={`w-full bg-gray-800 text-white shadow-lg rounded-lg ${isSelected ? 'ring-2 ring-purple-500' : ''}`}>
                 <CardContent className="space-y-8 max-h-[600px] overflow-y-auto px-4">
-                    <HeroSection style={style} onStyleChange={() => { }} />
-                    <SkillsSection style={style} />
-                    <ProjectsSection style={style} />
-                    <ExperienceSection style={style} />
-                    <TestimonialsSection style={style} />
-                    <ContactSection style={style} />
+                    {components.map((Component, index) => (
+                        <Component key={index} style={style} onStyleChange={() => { }} />
+                    ))}
                 </CardContent>
                 <CardFooter className="p-4">
                     <Button
@@ -59,7 +112,7 @@ function PortfolioTemplate({ style, onSelect, isSelected }: PortfolioTemplatePro
 export default function TemplateGrid() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedTemplate, setSelectedTemplate] = useState(templates[0].label);
+    const [selectedTemplate, setSelectedTemplate] = useState<string>(templates[0].label);
 
     const handleStyleSelect = (style: StyleType) => {
         setIsLoading(true);
@@ -79,6 +132,8 @@ export default function TemplateGrid() {
         }
     }, [isLoading]);
 
+    const selectedTemplateData = templates.find(template => template.label === selectedTemplate);
+
     return (
         <div className="space-y-12 container mx-auto px-4">
             <div className="flex justify-start items-center mb-8">
@@ -91,7 +146,12 @@ export default function TemplateGrid() {
                         className="bg-gray-800 text-white p-2 rounded-lg"
                     >
                         {templates.map((template) => (
-                            <option key={template.label} value={template.label}>
+                            <option
+                                key={template.label}
+                                value={template.label}
+                                disabled={template.status === 'Upcoming'}
+                                className={template.status === 'Upcoming' ? 'text-gray-500 cursor-not-allowed' : ''}
+                            >
                                 {template.label} ({template.status})
                             </option>
                         ))}
@@ -99,12 +159,13 @@ export default function TemplateGrid() {
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
-                {(['style1', 'style2', 'style3', 'style4', 'style5'] as StyleType[]).map((style) => (
+                {['style1', 'style2', 'style3', 'style4', 'style5'].map((style) => (
                     <PortfolioTemplate
                         key={style}
-                        style={style}
-                        onSelect={() => handleStyleSelect(style)}
+                        style={style as StyleType}
+                        onSelect={() => handleStyleSelect(style as StyleType)}
                         isSelected={selectedStyle === style}
+                        components={selectedTemplateData?.components || []}
                     />
                 ))}
             </div>
@@ -118,12 +179,9 @@ export default function TemplateGrid() {
             >
                 <h2 className="text-3xl font-bold text-center mb-8 text-gray-100">Your Selected Portfolio</h2>
                 <div className="space-y-12">
-                    <HeroSection style={selectedStyle} onStyleChange={() => { }} />
-                    <SkillsSection style={selectedStyle} />
-                    <ProjectsSection style={selectedStyle} />
-                    <ExperienceSection style={selectedStyle} />
-                    <TestimonialsSection style={selectedStyle} />
-                    <ContactSection style={selectedStyle} />
+                    {selectedTemplateData?.components.map((Component, index) => (
+                        <Component key={index} style={selectedStyle} onStyleChange={() => { }} />
+                    ))}
                 </div>
             </motion.div>
         </div>
