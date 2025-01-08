@@ -92,13 +92,16 @@ function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'
     return (
         <Button
             onClick={onClick}
-            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-2' : 'right-2'} bg-gray-800 text-white hover:bg-gray-700 z-10`}
+            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-2' : 'right-2'} 
+                bg-gray-800 text-white hover:bg-gray-700 z-10 rounded-full p-5`} // Increased padding to make the button larger
             aria-label={direction === 'left' ? 'Previous style' : 'Next style'}
         >
-            <Icon size={24} />
+            <Icon size={32} /> {/* Increased icon size */}
         </Button>
     );
 }
+
+
 
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
