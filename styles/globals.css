@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  
+  @media (max-width: 1200px) {
+    .scaled-container {
+        transform: scale(0.5);
+        transform-origin: top center;
+        height: calc(100vh / 0.75); /* Increase height proportionally */
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .text-content {
+        font-size: 0.85rem; /* Adjust text size for readability */
+    }
+
+    .button {
+        padding: 0.6rem 1.2rem; /* Reduce padding */
+        font-size: 0.9rem;
+    }
+
+    .card-content {
+        padding: 1rem; /* Adjust card spacing */
+    }
+}
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
