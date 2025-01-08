@@ -2,37 +2,29 @@
 
 import { Button } from "@/components/ui/button";
 import Link from 'next/link';
-import TemplateGrid from "../templates/TemplateGrid";
+import TemplateSelector from "../templates/TemplateSelector";
+
 interface CraftSiteProps {
     selectedSite: string;
 }
 
 export default function CraftSite({ selectedSite }: CraftSiteProps) {
     return (
-        <div className="min-h-screen flex flex-col items-center py-12 px-4 text-white bg-gradient-to-b from-purple-900 to-black">
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-center">
-                Craft Your{' '}
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                    {selectedSite}
-                </span>
-            </h1>
-
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                <Link href="/custom">
-                    <Button
-                        variant="outline"
-                        size="lg"
-                        className="text-lg px-8 py-6 text-black"
-                    >
-                        Fully Custom
-                    </Button>
-                </Link>
-            </div>
-
-            <div className="w-full max-w-7xl mx-auto">
-                <TemplateGrid />
-            </div>
+        <div className="min-h-screen flex flex-col text-white bg-gradient-to-b from-purple-900 to-black">
+            <header className="text-center py-3 px-4"> {/* Reduced py-16 to py-8 */}
+                <h1 className="text-5xl md:text-7xl font-extrabold mb-4"> {/* Reduced mb-8 to mb-4 */}
+                    Craft Your{' '}
+                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                        {selectedSite}
+                    </span>
+                </h1>
+            </header>
+            <main className="flex-grow flex flex-col items-center justify-center px-8 py-12">
+                {/* Zoomed Out Effect (80%) */}
+                <div className="w-full max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden transform scale-80">
+                    <TemplateSelector />
+                </div>
+            </main>
         </div>
     );
 }
-

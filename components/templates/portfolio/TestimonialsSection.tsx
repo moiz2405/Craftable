@@ -124,29 +124,29 @@ export default function TestimonialsSection({ style }: TestimonialsSectionProps)
             ))}
           </motion.div>
         );
-        case 'style5':
-            return (
+      case 'style5':
+        return (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="relative"
+          >
+            {testimonials.map((testimonial, index) => (
               <motion.div
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="relative"
+                key={index}
+                variants={itemVariants}
+                className="bg-gray-100 p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 text-center"
               >
-                {testimonials.map((testimonial, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    className="bg-gray-100 p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 text-center"
-                  >
-                    <div className="text-4xl mb-4 text-purple-500">💬</div>
-                    <p className="text-gray-800 mb-4 italic">"{testimonial.text}"</p>
-                    <p className="font-bold text-purple-800">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  </motion.div>
-                ))}
+                <div className="text-4xl mb-4 text-purple-500">💬</div>
+                <p className="text-gray-800 mb-4 italic">"{testimonial.text}"</p>
+                <p className="font-bold text-purple-800">{testimonial.name}</p>
+                <p className="text-sm text-gray-600">{testimonial.role}</p>
               </motion.div>
-            );
-          
+            ))}
+          </motion.div>
+        );
+
       default:
         return null;
     }
