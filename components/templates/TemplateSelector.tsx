@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -62,7 +61,7 @@ function TemplateCard({
                     {components.length > 0 ? (
                         components.map(({ component: Component, title }, index) => (
                             <div key={index} className="space-y-4">
-                                <h3 className="text-xl font-semibold text-gray-300">{title}</h3> {/* Dynamic heading */}
+                                <h3 className="text-xl font-semibold text-gray-300">{title}</h3>
                                 <Component style={style} onStyleChange={() => { }} />
                             </div>
                         ))
@@ -127,7 +126,7 @@ export default function TemplateSelector() {
     const selectedTemplateData = TEMPLATES.find((template) => template.label === selectedTemplate);
 
     return (
-        <div className="space-y-8 container mx-auto px-10 py-10">
+        <div className="space-y-8 container mx-auto px-4 py-2">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <h2 className="text-3xl font-bold text-gray-100">Choose Your Template</h2>
                 <div className="flex gap-4">
@@ -154,7 +153,7 @@ export default function TemplateSelector() {
                     <Button
                         onClick={() => {/* Your continue button action */ }}
                         disabled={!selectedTemplate}
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300 w-full max-w-xs"
                     >
                         Continue
                     </Button>
@@ -162,7 +161,7 @@ export default function TemplateSelector() {
             </div>
 
             {/* Template Card Container */}
-            <div className="relative aspect-[16/9] w-full max-w-5xl mx-auto">
+            <div className="relative aspect-[13/9] w-full max-w-5xl mx-auto">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentStyleIndex}
@@ -181,7 +180,6 @@ export default function TemplateSelector() {
                     </motion.div>
                 </AnimatePresence>
             </div>
-
 
             {/* Separate Container for Navigation Buttons */}
             <div className="flex justify-center mt-4 space-x-2">
@@ -204,5 +202,6 @@ export default function TemplateSelector() {
                 ))}
             </div>
         </div>
+
     );
 }
