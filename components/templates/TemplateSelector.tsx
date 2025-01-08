@@ -35,7 +35,6 @@ const TEMPLATES = [
     { label: 'Landing Page', status: 'Upcoming', components: [] },
 ];
 
-
 function TemplateCard({
     style,
     onSelect,
@@ -71,8 +70,6 @@ function TemplateCard({
                         <p className="text-gray-400 text-center p-4">No components available for this template.</p>
                     )}
                 </div>
-
-
             </div>
 
             <div className="p-4 flex justify-center bg-gray-900">
@@ -90,8 +87,6 @@ function TemplateCard({
         </div>
     );
 }
-
-
 
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
@@ -132,9 +127,9 @@ export default function TemplateSelector() {
     const selectedTemplateData = TEMPLATES.find((template) => template.label === selectedTemplate);
 
     return (
-        <div className="space-y-8 container mx-auto px-4 py-8">
+        <div className="space-y-8 container mx-auto px-10 py-10">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                <h2 className="text-2xl font-bold text-gray-100">Choose Your Template</h2>
+                <h2 className="text-3xl font-bold text-gray-100">Choose Your Template</h2>
                 <div className="flex gap-4">
                     <Select
                         value={selectedTemplate}
@@ -167,13 +162,13 @@ export default function TemplateSelector() {
             </div>
 
             {/* Template Card Container */}
-            <div className="relative aspect-[16/10] w-full max-w-5xl mx-auto">
+            <div className="relative aspect-[16/9] w-full max-w-5xl mx-auto">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentStyleIndex}
-                        initial={{ opacity: 0, x: 300 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -300 }}
+                        initial={{ opacity: 0, y: 200 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -200 }}
                         transition={{ duration: 0.5 }}
                         className="absolute inset-0"
                     >
@@ -186,6 +181,7 @@ export default function TemplateSelector() {
                     </motion.div>
                 </AnimatePresence>
             </div>
+
 
             {/* Separate Container for Navigation Buttons */}
             <div className="flex justify-center mt-4 space-x-2">
@@ -210,5 +206,3 @@ export default function TemplateSelector() {
         </div>
     );
 }
-
-
