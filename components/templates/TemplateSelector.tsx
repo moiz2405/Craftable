@@ -17,14 +17,36 @@ import clsx from 'clsx';
 type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
 
 const TEMPLATES = [
-    { label: 'Portfolio', status: 'Available', components: [HeroSection, SkillsSection, ProjectsSection, ExperienceSection, TestimonialsSection, ContactSection] },
+    {
+        label: 'Portfolio',
+        status: 'Available',
+        components: [
+            { component: HeroSection, title: '' },
+            { component: SkillsSection, title: 'Skills' },
+            { component: ProjectsSection, title: 'Projects' },
+            { component: ExperienceSection, title: 'Experience' },
+            { component: TestimonialsSection, title: 'Testimonials' },
+            { component: ContactSection, title: 'Contact' }
+        ]
+    },
     { label: 'E-commerce Site', status: 'Available', components: [] },
     { label: 'Business Site', status: 'Upcoming', components: [] },
     { label: 'Blog Site', status: 'Upcoming', components: [] },
     { label: 'Landing Page', status: 'Upcoming', components: [] },
 ];
 
-function TemplateCard({ style, onSelect, isSelected, components }: { style: StyleType; onSelect: () => void; isSelected: boolean; components: React.ComponentType[]; }) {
+
+function TemplateCard({
+    style,
+    onSelect,
+    isSelected,
+    components,
+}: {
+    style: StyleType;
+    onSelect: () => void;
+    isSelected: boolean;
+    components: { component: React.ComponentType; title: string }[];
+}) {
     return (
         <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden">
             <div className="bg-gray-900 p-2 flex items-center justify-between">
@@ -35,15 +57,24 @@ function TemplateCard({ style, onSelect, isSelected, components }: { style: Styl
                 </div>
                 <div className="text-sm text-gray-400">Template Preview</div>
             </div>
+
             <div className="aspect-[16/10] overflow-hidden">
-                <div className="h-full overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-700 hover:scrollbar-thumb-purple-400">
+                <div className="h-full overflow-y-auto scrollbar-custom p-4 space-y-4">
                     {components.length > 0 ? (
-                        components.map((Component, index) => <Component key={index} style={style} onStyleChange={() => { }} />)
+                        components.map(({ component: Component, title }, index) => (
+                            <div key={index} className="space-y-4">
+                                <h3 className="text-xl font-semibold text-gray-300">{title}</h3> {/* Dynamic heading */}
+                                <Component style={style} onStyleChange={() => { }} />
+                            </div>
+                        ))
                     ) : (
                         <p className="text-gray-400 text-center p-4">No components available for this template.</p>
                     )}
                 </div>
+
+
             </div>
+
             <div className="p-4 flex justify-center bg-gray-900">
                 <Button
                     onClick={onSelect}
@@ -59,6 +90,8 @@ function TemplateCard({ style, onSelect, isSelected, components }: { style: Styl
         </div>
     );
 }
+
+
 
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
@@ -146,7 +179,7 @@ export default function TemplateSelector() {
                 <CarouselNavButton direction="right" onClick={() => handleNav('next')} />
             </div>
 
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-4 space-x-2">
                 {['style1', 'style2', 'style3', 'style4', 'style5'].map((style, index) => (
                     <Button
                         key={style}
