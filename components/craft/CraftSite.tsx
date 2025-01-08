@@ -27,20 +27,6 @@ export default function CraftSite({ selectedSite }: CraftSiteProps) {
                     <TemplateSelector />
                 </div>
 
-                <div className="mt-12 text-center">
-                    <p className="text-lg text-gray-300 mb-4">
-                        Happy with your selection? Continue to customize your template.
-                    </p>
-                    <Link href="/customize-template">
-                        <Button
-                            variant="solid"
-                            size="lg"
-                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l text-white font-semibold px-12 py-4 shadow-lg transform transition-transform hover:scale-105"
-                        >
-                            Customize Template
-                        </Button>
-                    </Link>
-                </div>
             </main>
         </div>
     );

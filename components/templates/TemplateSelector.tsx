@@ -135,28 +135,38 @@ export default function TemplateSelector() {
         <div className="space-y-8 container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <h2 className="text-2xl font-bold text-gray-100">Choose Your Template</h2>
-                <Select
-                    value={selectedTemplate}
-                    onValueChange={(value) => setSelectedTemplate(value)}
-                >
-                    <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700">
-                        <SelectValue placeholder="Select a template" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {TEMPLATES.map(({ label, status }) => (
-                            <SelectItem
-                                key={label}
-                                value={label}
-                                disabled={status === 'Upcoming'}
-                                className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-100')}
-                            >
-                                {label} ({status})
-                            </SelectItem>
-                        ))}
-                    </SelectContent>
-                </Select>
+                <div className="flex gap-4">
+                    <Select
+                        value={selectedTemplate}
+                        onValueChange={(value) => setSelectedTemplate(value)}
+                    >
+                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700">
+                            <SelectValue placeholder="Select a template" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {TEMPLATES.map(({ label, status }) => (
+                                <SelectItem
+                                    key={label}
+                                    value={label}
+                                    disabled={status === 'Upcoming'}
+                                    className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-100')}
+                                >
+                                    {label} ({status})
+                                </SelectItem>
+                            ))}
+                        </SelectContent>
+                    </Select>
+                    <Button
+                        onClick={() => {/* Your continue button action */ }}
+                        disabled={!selectedTemplate}
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300"
+                    >
+                        Continue
+                    </Button>
+                </div>
             </div>
 
+            {/* Template Card Container */}
             <div className="relative aspect-[16/10] w-full max-w-5xl mx-auto">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -175,10 +185,15 @@ export default function TemplateSelector() {
                         />
                     </motion.div>
                 </AnimatePresence>
+            </div>
+
+            {/* Separate Container for Navigation Buttons */}
+            <div className="flex justify-center mt-4 space-x-2">
                 <CarouselNavButton direction="left" onClick={() => handleNav('prev')} />
                 <CarouselNavButton direction="right" onClick={() => handleNav('next')} />
             </div>
 
+            {/* Bottom Style Selection Buttons */}
             <div className="flex justify-center mt-4 space-x-2">
                 {['style1', 'style2', 'style3', 'style4', 'style5'].map((style, index) => (
                     <Button
@@ -195,3 +210,5 @@ export default function TemplateSelector() {
         </div>
     );
 }
+
+
