@@ -46,7 +46,7 @@ function TemplateCard({
     components: { component: React.ComponentType; title: string }[];
 }) {
     return (
-        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-100 hover:shadow-2xl transform scale-90">
             <div className="bg-gray-900 p-3 flex items-center justify-between">
                 <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
