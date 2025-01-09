@@ -40,7 +40,8 @@ export default function EnhancedHero({ onSelectSite }: HeroProps) {
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const router = useRouter();
 
-    const dropdownRef = useRef<HTMLDivElement>(null);
+    const dropdownRef = useRef<HTMLUListElement>(null);
+
     const buttonRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

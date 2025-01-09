@@ -38,12 +38,7 @@ function TemplateCard({
     onSelect,
     isSelected,
     components,
-}: {
-    style: StyleType;
-    onSelect: () => void;
-    isSelected: boolean;
-    components: { component: React.ComponentType; title: string }[];
-}) {
+}: TemplateCardProps) {
     return (
         <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-100 hover:shadow-2xl transform scale-70">
             <div className="bg-gray-900 p-3 flex items-center justify-between">
@@ -84,6 +79,7 @@ function TemplateCard({
         </div>
     );
 }
+
 
 
 
