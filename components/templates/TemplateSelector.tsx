@@ -12,7 +12,8 @@ import { TestimonialsSection } from './portfolio/TestimonialsSection';
 import { ContactSection } from './portfolio/ContactSection';
 import clsx from 'clsx';
 import { HeroSection } from './portfolio/HeroSection';
-type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
+// type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
+import { StyleType, ComponentProps, TemplateCardProps } from '../../types';
 
 const TEMPLATES = [
     {
