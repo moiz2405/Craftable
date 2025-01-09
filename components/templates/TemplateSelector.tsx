@@ -46,7 +46,7 @@ function TemplateCard({
     components: { component: React.ComponentType; title: string }[];
 }) {
     return (
-        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-100 hover:shadow-2xl transform scale-90">
+        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-100 hover:shadow-2xl transform scale-70">
             <div className="bg-gray-900 p-3 flex items-center justify-between">
                 <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -101,6 +101,12 @@ function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'
     );
 }
 
+const STATUS_COLORS: Record<string, string> = {
+    Available: 'text-green-500',
+    Testing: 'text-yellow-500',
+    Upcoming: 'text-red-500',
+};
+
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
     const [isLoading, setIsLoading] = useState(false);
@@ -135,22 +141,36 @@ export default function TemplateSelector() {
                         value={selectedTemplate}
                         onValueChange={(value) => setSelectedTemplate(value)}
                     >
-                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700 rounded-lg">
+                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 transition-all duration-300">
                             <SelectValue placeholder="Select a template" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-gray-800 border border-gray-700 rounded-lg shadow-lg mt-1 p-2">
                             {TEMPLATES.map(({ label, status }) => (
                                 <SelectItem
                                     key={label}
                                     value={label}
                                     disabled={status === 'Upcoming'}
-                                    className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-900')}
+                                    className={clsx(
+                                        'flex justify-between items-center p-2 text-white rounded-lg transition-all duration-300',
+                                        status !== 'Upcoming' && 'hover:bg-gray-700 cursor-pointer',
+                                        status === 'Upcoming' && 'cursor-not-allowed opacity-70'
+                                    )}
                                 >
-                                    {label} ({status})
+                                    <span>{label}</span>
+                                    <span
+                                        className={clsx(
+                                            'w-3 h-3 rounded-full ml-2', // Added margin-left for better spacing
+                                            status === 'Available' ? 'bg-green-500' :
+                                                status === 'Testing' ? 'bg-yellow-500' : 'bg-red-500'
+                                        )}
+                                    />
                                 </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
+
+
+
                     <Button
                         onClick={() => {/* Continue button action */ }}
                         disabled={!selectedTemplate}
