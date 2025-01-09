@@ -16,3 +16,4 @@ export type TemplateCardProps = {
         title: string;
     }[];
 };
+
