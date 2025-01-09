@@ -45,16 +45,16 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
                     >
                         {experiences.map((exp, index) => (
                             <motion.div key={index} variants={itemVariants}>
-                                <Card className="bg-purple-600 text-white">
+                                <Card className="bg-gray-800 border-gray-700 text-white">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
+                                        <CardTitle className="flex items-center gap-2 text-purple-400">
                                             <Briefcase className="h-5 w-5" />
                                             {exp.company}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-lg">{exp.role}</p>
-                                        <p className="text-sm text-purple-200 flex items-center gap-1">
+                                        <p className="text-lg text-gray-300">{exp.role}</p>
+                                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
                                             <Calendar className="h-4 w-4" />
                                             {exp.period}
                                         </p>
@@ -74,16 +74,16 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
                     >
                         {experiences.map((exp, index) => (
                             <motion.div key={index} variants={itemVariants}>
-                                <Card>
+                                <Card className="bg-gray-800 border-gray-700 text-white">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
-                                            <Briefcase className="h-5 w-5 text-purple-600" />
+                                        <CardTitle className="flex items-center gap-2 text-purple-400">
+                                            <Briefcase className="h-5 w-5" />
                                             {exp.company}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-lg text-gray-700 dark:text-gray-300">{exp.role}</p>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+                                        <p className="text-lg text-gray-300">{exp.role}</p>
+                                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
                                             <Calendar className="h-4 w-4" />
                                             {exp.period}
                                         </p>
@@ -103,16 +103,16 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
                     >
                         {experiences.map((exp, index) => (
                             <motion.div key={index} variants={itemVariants}>
-                                <Card className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
+                                <Card className="bg-gradient-to-r from-gray-800 to-gray-900 border-gray-700 text-white">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
+                                        <CardTitle className="flex items-center gap-2 text-purple-400">
                                             <Briefcase className="h-5 w-5" />
                                             {exp.company}
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-lg">{exp.role}</p>
-                                        <p className="text-sm text-purple-200 flex items-center gap-1">
+                                        <p className="text-lg text-gray-300">{exp.role}</p>
+                                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
                                             <Calendar className="h-4 w-4" />
                                             {exp.period}
                                         </p>
@@ -133,15 +133,15 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
                         {experiences.map((exp, index) => (
                             <motion.div key={index} variants={itemVariants} className="flex items-center">
                                 <div className="w-1/4 text-right pr-4">
-                                    <p className="text-sm text-gray-500">{exp.period}</p>
+                                    <p className="text-sm text-gray-400">{exp.period}</p>
                                 </div>
                                 <div className="w-1/2">
                                     <div className="w-4 h-4 bg-purple-500 rounded-full"></div>
                                     <div className="w-1 h-full bg-purple-300 ml-2"></div>
                                 </div>
-                                <div className="w-3/4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
-                                    <h4 className="text-xl font-bold text-purple-600 dark:text-purple-400">{exp.company}</h4>
-                                    <p className="text-lg text-gray-700 dark:text-gray-300">{exp.role}</p>
+                                <div className="w-3/4 bg-gray-800 border-gray-700 p-4 rounded-lg shadow-md">
+                                    <h4 className="text-xl font-bold text-purple-400">{exp.company}</h4>
+                                    <p className="text-lg text-gray-300">{exp.role}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -157,20 +157,20 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
                     >
                         {experiences.map((exp, index) => (
                             <motion.div key={index} variants={itemVariants}>
-                                <Card className="bg-gray-100 dark:bg-gray-800 text-center">
+                                <Card className="bg-gray-800 border-gray-700 text-white text-center">
                                     <CardHeader>
                                         <motion.div
-                                            className="text-4xl mb-2 text-purple-500"
+                                            className="text-4xl mb-2 text-purple-400"
                                             animate={{ rotateY: 360 }}
                                             transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
                                         >
                                             <Briefcase className="h-12 w-12 mx-auto" />
                                         </motion.div>
-                                        <CardTitle className="text-xl font-bold text-gray-800 dark:text-gray-200">{exp.company}</CardTitle>
+                                        <CardTitle className="text-xl font-bold text-purple-400">{exp.company}</CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <p className="text-lg text-gray-700 dark:text-gray-300">{exp.role}</p>
-                                        <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center justify-center gap-1 mt-2">
+                                        <p className="text-lg text-gray-300">{exp.role}</p>
+                                        <p className="text-sm text-gray-400 flex items-center justify-center gap-1 mt-2">
                                             <Calendar className="h-4 w-4" />
                                             {exp.period}
                                         </p>
@@ -187,7 +187,7 @@ export function ExperienceSection({ style }: ExperienceSectionProps) {
 
     return (
         <section className="container mx-auto px-4 py-6">
-            <h2 className="text-3xl font-bold text-center mb-12">My Experience</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">My Experience</h2>
             {renderContent()}
         </section>
     )
