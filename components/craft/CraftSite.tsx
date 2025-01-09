@@ -19,7 +19,7 @@ export default function CraftSite({ selectedSite }: CraftSiteProps) {
             </header>
             <main className="flex-grow flex flex-col items-center justify-center px-8 py-12">
                 {/* Zoomed Out Effect (80%) */}
-                <div className="w-full max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden transform scale-80">
+                <div className="w-full max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden transform scale-70">
                     <TemplateSelector />
                 </div>
             </main>
