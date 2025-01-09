@@ -1,13 +1,22 @@
-// app/craft/page.tsx
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import CraftSite from '../../components/craft/CraftSite';
+import dynamic from 'next/dynamic';
+
+const CraftSite = dynamic(() => import('../../components/craft/CraftSite'), {
+    ssr: false, // Disable SSR for CraftSite
+});
 
 export default function Page() {
+    const [selectedSite, setSelectedSite] = useState<string>('Portfolio');
+
     const searchParams = useSearchParams();
-    const selectedSite = searchParams.get('site') || 'Portfolio'; // Default to 'Portfolio' if no site is selected.
+
+    useEffect(() => {
+        const site = searchParams.get('site') || 'Portfolio';
+        setSelectedSite(site); // Update selected site based on search params
+    }, [searchParams]); // Run effect when searchParams change
 
     return (
         <div>
