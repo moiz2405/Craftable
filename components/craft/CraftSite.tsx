@@ -1,7 +1,5 @@
 'use client';
 
-import { Button } from "@/components/ui/button";
-import Link from 'next/link';
 import TemplateSelector from "../templates/TemplateSelector";
 
 interface CraftSiteProps {
@@ -12,9 +10,9 @@ export default function CraftSite({ selectedSite }: CraftSiteProps) {
     return (
         <div className="min-h-screen flex flex-col text-white bg-gradient-to-b from-purple-900 to-black">
             <header className="text-center py-3 px-4"> {/* Reduced py-16 to py-8 */}
-                <h1 className="text-5xl md:text-7xl font-extrabold mb-4"> {/* Reduced mb-8 to mb-4 */}
+                <h1 className="text-5xl md:text-5xl font-extrabold mb-4"> {/* Reduced mb-8 to mb-4 */}
                     Craft Your{' '}
-                    <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                    <span className="font-bold text-transparent bg-clip-text text-5xl bg-gradient-to-r from-purple-400 to-pink-600 shadow-inner">
                         {selectedSite}
                     </span>
                 </h1>
