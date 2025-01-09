@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import HeroSection from './portfolio/HeroSection';
-import SkillsSection from './portfolio/SkillsSection';
-import ProjectsSection from './portfolio/ProjectsSection';
-import ExperienceSection from './portfolio/ExperienceSection';
-import TestimonialsSection from './portfolio/TestimonialsSection';
-import ContactSection from './portfolio/ContactSection';
+import { SkillsSection } from './portfolio/SkillsSection';
+import { ProjectsSection } from './portfolio/ProjectsSection';
+import { ExperienceSection } from './portfolio/ExperienceSection';
+import { TestimonialsSection } from './portfolio/TestimonialsSection';
+import { ContactSection } from './portfolio/ContactSection';
 import clsx from 'clsx';
-
-type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
+import { HeroSection } from './portfolio/HeroSection';
+// type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
+import { StyleType, ComponentProps, TemplateCardProps } from '../../types';
 
 const TEMPLATES = [
     {
@@ -21,14 +21,14 @@ const TEMPLATES = [
         status: 'Available',
         components: [
             { component: HeroSection, title: '' },
-            { component: SkillsSection, title: 'Skills' },
-            { component: ProjectsSection, title: 'Projects' },
-            { component: ExperienceSection, title: 'Experience' },
-            { component: TestimonialsSection, title: 'Testimonials' },
-            { component: ContactSection, title: 'Contact' }
+            { component: SkillsSection, title: '' },
+            { component: ProjectsSection, title: '' },
+            { component: ExperienceSection, title: '' },
+            { component: TestimonialsSection, title: '' },
+            { component: ContactSection, title: '' }
         ]
     },
-    { label: 'E-commerce Site', status: 'Available', components: [] },
+    { label: 'E-commerce Site', status: 'Testing', components: [] },
     { label: 'Business Site', status: 'Upcoming', components: [] },
     { label: 'Blog Site', status: 'Upcoming', components: [] },
     { label: 'Landing Page', status: 'Upcoming', components: [] },
@@ -39,15 +39,10 @@ function TemplateCard({
     onSelect,
     isSelected,
     components,
-}: {
-    style: StyleType;
-    onSelect: () => void;
-    isSelected: boolean;
-    components: { component: React.ComponentType; title: string }[];
-}) {
+}: TemplateCardProps) {
     return (
-        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden">
-            <div className="bg-gray-900 p-2 flex items-center justify-between">
+        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-100 hover:shadow-2xl transform scale-70">
+            <div className="bg-gray-900 p-3 flex items-center justify-between">
                 <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -56,12 +51,11 @@ function TemplateCard({
                 <div className="text-sm text-gray-400">Template Preview</div>
             </div>
 
-            <div className="aspect-[16/10] overflow-hidden">
-                <div className="h-full overflow-y-auto scrollbar-custom p-4 space-y-4">
+            <div className="aspect-[16/10] overflow-hidden rounded-lg bg-gray-700">
+                <div className="h-full scrollbar-custom overflow-y-auto p-1 py-0.5"> {/* Further reduced padding here */}
                     {components.length > 0 ? (
                         components.map(({ component: Component, title }, index) => (
-                            <div key={index} className="space-y-4">
-                                <h3 className="text-xl font-semibold text-gray-300">{title}</h3>
+                            <div key={index} className="mb-1"> {/* Further reduced margin-bottom here */}
                                 <Component style={style} onStyleChange={() => { }} />
                             </div>
                         ))
@@ -71,11 +65,11 @@ function TemplateCard({
                 </div>
             </div>
 
-            <div className="p-4 flex justify-center bg-gray-900">
+            <div className="p-4 flex justify-center bg-gray-900 rounded-b-lg">
                 <Button
                     onClick={onSelect}
                     className={clsx(
-                        "w-full max-w-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300",
+                        "w-full max-w-xs bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-300 hover:from-purple-700 hover:to-pink-700",
                         isSelected && "bg-gradient-to-l"
                     )}
                     aria-pressed={isSelected}
@@ -87,21 +81,28 @@ function TemplateCard({
     );
 }
 
+
+
+
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
     return (
         <Button
             onClick={onClick}
-            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-2' : 'right-2'} 
-                bg-gray-800 text-white hover:bg-gray-700 z-10 rounded-full p-5`} // Increased padding to make the button larger
+            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-4' : 'right-4'} 
+                bg-gray-900 text-white hover:bg-gray-800 z-10 rounded-full p-4 transition-all duration-300 hover:scale-125`} // Larger buttons with scale effect
             aria-label={direction === 'left' ? 'Previous style' : 'Next style'}
         >
-            <Icon size={32} /> {/* Increased icon size */}
+            <Icon size={32} />
         </Button>
     );
 }
 
-
+const STATUS_COLORS: Record<string, string> = {
+    Available: 'text-green-500',
+    Testing: 'text-yellow-500',
+    Upcoming: 'text-red-500',
+};
 
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
@@ -129,34 +130,48 @@ export default function TemplateSelector() {
     const selectedTemplateData = TEMPLATES.find((template) => template.label === selectedTemplate);
 
     return (
-        <div className="space-y-8 container mx-auto px-4 py-2">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <div className="space-y-8 container mx-auto px-4 py-6">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-3 gap-1">
                 <h2 className="text-3xl font-bold text-gray-100">Choose Your Template</h2>
                 <div className="flex gap-4">
                     <Select
                         value={selectedTemplate}
                         onValueChange={(value) => setSelectedTemplate(value)}
                     >
-                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700">
+                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 transition-all duration-300">
                             <SelectValue placeholder="Select a template" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-gray-800 border border-gray-700 rounded-lg shadow-lg mt-1 p-2">
                             {TEMPLATES.map(({ label, status }) => (
                                 <SelectItem
                                     key={label}
                                     value={label}
                                     disabled={status === 'Upcoming'}
-                                    className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-100')}
+                                    className={clsx(
+                                        'flex justify-between items-center p-2 text-white rounded-lg transition-all duration-300',
+                                        status !== 'Upcoming' && 'hover:bg-gray-700 cursor-pointer',
+                                        status === 'Upcoming' && 'cursor-not-allowed opacity-70'
+                                    )}
                                 >
-                                    {label} ({status})
+                                    <span>{label}</span>
+                                    <span
+                                        className={clsx(
+                                            'w-3 h-3 rounded-full ml-2', // Added margin-left for better spacing
+                                            status === 'Available' ? 'bg-green-500' :
+                                                status === 'Testing' ? 'bg-yellow-500' : 'bg-red-500'
+                                        )}
+                                    />
                                 </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
+
+
+
                     <Button
-                        onClick={() => {/* Your continue button action */ }}
+                        onClick={() => {/* Continue button action */ }}
                         disabled={!selectedTemplate}
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300 w-full max-w-xs"
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-300 w-full max-w-xs"
                     >
                         Continue
                     </Button>
@@ -184,13 +199,13 @@ export default function TemplateSelector() {
                 </AnimatePresence>
             </div>
 
-            {/* Separate Container for Navigation Buttons */}
-            <div className="flex justify-center mt-4 space-x-2">
+            {/* Navigation Buttons */}
+            <div className="flex justify-center mt-6 space-x-4">
                 <CarouselNavButton direction="left" onClick={() => handleNav('prev')} />
                 <CarouselNavButton direction="right" onClick={() => handleNav('next')} />
             </div>
 
-            {/* Bottom Style Selection Buttons */}
+            {/* Style Selection Buttons */}
             <div className="flex justify-center mt-4 space-x-2">
                 {['style1', 'style2', 'style3', 'style4', 'style5'].map((style, index) => (
                     <Button
@@ -205,6 +220,5 @@ export default function TemplateSelector() {
                 ))}
             </div>
         </div>
-
     );
 }

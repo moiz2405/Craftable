@@ -1,17 +1,31 @@
-// app/craft/page.tsx
 'use client';
 
-import React from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation'; // Import useSearchParams
+import { Suspense } from 'react'; // Import Suspense
 import CraftSite from '../../components/craft/CraftSite';
 
-export default function Page() {
-    const searchParams = useSearchParams();
-    const selectedSite = searchParams.get('site') || 'Portfolio'; // Default to 'Portfolio' if no site is selected.
+const PageContent = () => {
+    const searchParams = useSearchParams(); // Access query parameters
+    const [selectedSite, setSelectedSite] = useState<string>('Portfolio');
+
+    useEffect(() => {
+        // Get the 'site' parameter or default to 'Portfolio'
+        const site = searchParams.get('site') || 'Portfolio';
+        setSelectedSite(site);
+    }, [searchParams]); // Rerun effect if searchParams change
 
     return (
         <div>
             <CraftSite selectedSite={selectedSite} />
         </div>
+    );
+};
+
+export default function Page() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <PageContent />
+        </Suspense>
     );
 }
