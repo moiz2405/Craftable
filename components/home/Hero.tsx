@@ -16,7 +16,7 @@ interface Option {
 
 const options: Option[] = [
     { label: 'Portfolio', status: 'Available', description: 'Showcase your work and skills', isAvailable: true },
-    { label: 'E-commerce Site', status: 'Testing', description: 'Sell products online', isAvailable: false },
+    { label: 'E-commerce Site', status: 'Testing', description: 'Sell products online', isAvailable: true },
     { label: 'Business Site', status: 'Coming Soon', description: 'Promote your business', isAvailable: false },
     { label: 'Blog Site', status: 'Coming Soon', description: 'Share your thoughts and ideas', isAvailable: false },
     { label: 'Landing Page', status: 'Coming Soon', description: 'Promote a specific product or service', isAvailable: false },

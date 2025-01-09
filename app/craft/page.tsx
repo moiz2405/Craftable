@@ -1,22 +1,18 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-import dynamic from 'next/dynamic';
-
-const CraftSite = dynamic(() => import('../../components/craft/CraftSite'), {
-    ssr: false, // Disable SSR for CraftSite
-});
+import { useSearchParams } from 'next/navigation'; // Import useSearchParams
+import CraftSite from '../../components/craft/CraftSite';
 
 export default function Page() {
+    const searchParams = useSearchParams(); // Access query parameters
     const [selectedSite, setSelectedSite] = useState<string>('Portfolio');
 
-    const searchParams = useSearchParams();
-
     useEffect(() => {
+        // Get the 'site' parameter or default to 'Portfolio'
         const site = searchParams.get('site') || 'Portfolio';
-        setSelectedSite(site); // Update selected site based on search params
-    }, [searchParams]); // Run effect when searchParams change
+        setSelectedSite(site);
+    }, [searchParams]); // Rerun effect if searchParams change
 
     return (
         <div>
