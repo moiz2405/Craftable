@@ -16,19 +16,12 @@ interface Option {
 
 const options: Option[] = [
     { label: 'Portfolio', status: 'Available', description: 'Showcase your work and skills', isAvailable: true },
-    { label: 'E-commerce Site', status: 'Coming Soon', description: 'Sell products online', isAvailable: false },
+    { label: 'E-commerce Site', status: 'Testing', description: 'Sell products online', isAvailable: false },
     { label: 'Business Site', status: 'Coming Soon', description: 'Promote your business', isAvailable: false },
     { label: 'Blog Site', status: 'Coming Soon', description: 'Share your thoughts and ideas', isAvailable: false },
     { label: 'Landing Page', status: 'Coming Soon', description: 'Promote a specific product or service', isAvailable: false },
 ];
 
-const siteNameMapping: { [key: string]: string } = {
-    'Portfolio': 'portfolio',
-    'E-commerce Site': 'ecommerce-site',
-    'Business Site': 'business-site',
-    'Blog Site': 'blog-site',
-    'Landing Page': 'landing-page',
-};
 
 interface HeroProps {
     onSelectSite: (site: string) => void;

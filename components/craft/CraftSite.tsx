@@ -1,7 +1,7 @@
+// 'CraftSite.tsx'
 'use client';
 
-import { Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import TemplateSelector from "../templates/TemplateSelector";
 
 interface CraftSiteProps {
@@ -9,8 +9,7 @@ interface CraftSiteProps {
 }
 
 export default function CraftSite({ selectedSite }: CraftSiteProps) {
-    const searchParams = useSearchParams();
-    const dynamicSite = searchParams.get('site') || selectedSite; // Use dynamic site or fallback to selectedSite
+    const [dynamicSite] = useState<string>(selectedSite); // Use selectedSite directly
 
     return (
         <div className="min-h-screen flex flex-col text-white bg-gradient-to-b from-purple-900 to-black">
@@ -23,12 +22,9 @@ export default function CraftSite({ selectedSite }: CraftSiteProps) {
                 </h1>
             </header>
             <main className="flex-grow flex flex-col items-center justify-center px-8 py-4">
-                {/* Wrap the TemplateSelector inside Suspense */}
-                <Suspense fallback={<div>Loading...</div>}>
-                    <div className="w-full max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden transform scale-70">
-                        <TemplateSelector />
-                    </div>
-                </Suspense>
+                <div className="w-full max-w-7xl mx-auto bg-gray-900/50 backdrop-blur-sm rounded-lg shadow-2xl overflow-hidden transform scale-70">
+                    <TemplateSelector />
+                </div>
             </main>
         </div>
     );
