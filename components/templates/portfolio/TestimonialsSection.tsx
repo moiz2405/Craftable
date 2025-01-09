@@ -45,17 +45,17 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
           >
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full">
+                <Card className="h-full bg-gray-800 border-gray-700">
                   <CardContent className="pt-6">
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">"{testimonial.text}"</p>
+                    <p className="text-gray-300 mb-4">"{testimonial.text}"</p>
                     <div className="flex items-center">
                       <Avatar className="h-10 w-10 mr-4">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                         <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-bold text-gray-900 dark:text-gray-100">{testimonial.name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
+                        <p className="font-bold text-purple-400">{testimonial.name}</p>
+                        <p className="text-sm text-gray-400">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -74,17 +74,17 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
           >
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-purple-600 text-white">
+                <Card className="bg-gradient-to-r from-gray-800 to-gray-900 border-gray-700">
                   <CardContent className="pt-6">
-                    <p className="mb-4">"{testimonial.text}"</p>
+                    <p className="text-gray-300 mb-4">"{testimonial.text}"</p>
                     <div className="flex items-center">
                       <Avatar className="h-10 w-10 mr-4">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                         <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-bold">{testimonial.name}</p>
-                        <p className="text-sm text-purple-200">{testimonial.role}</p>
+                        <p className="font-bold text-purple-400">{testimonial.name}</p>
+                        <p className="text-sm text-gray-400">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -103,17 +103,17 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
           >
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants} className="w-full md:w-2/3">
-                <Card className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
+                <Card className="bg-gradient-to-r from-gray-800 to-gray-900 border-gray-700">
                   <CardContent className="pt-6">
-                    <p className="mb-4">"{testimonial.text}"</p>
+                    <p className="text-gray-300 mb-4">"{testimonial.text}"</p>
                     <div className="flex items-center">
                       <Avatar className="h-10 w-10 mr-4">
                         <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                         <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="font-bold">{testimonial.name}</p>
-                        <p className="text-sm text-purple-200">{testimonial.role}</p>
+                        <p className="font-bold text-purple-400">{testimonial.name}</p>
+                        <p className="text-sm text-gray-400">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -132,9 +132,9 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
           >
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="h-full flex flex-col">
+                <Card className="h-full flex flex-col bg-gray-800 border-gray-700">
                   <CardContent className="pt-6 flex-grow">
-                    <p className="text-gray-700 dark:text-gray-300 mb-4">"{testimonial.text}"</p>
+                    <p className="text-gray-300 mb-4">"{testimonial.text}"</p>
                   </CardContent>
                   <CardHeader className="mt-auto">
                     <div className="flex items-center">
@@ -143,8 +143,8 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
                         <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                       </Avatar>
                       <div>
-                        <CardTitle className="text-lg">{testimonial.name}</CardTitle>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
+                        <CardTitle className="text-lg text-purple-400">{testimonial.name}</CardTitle>
+                        <p className="text-sm text-gray-400">{testimonial.role}</p>
                       </div>
                     </div>
                   </CardHeader>
@@ -163,16 +163,16 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
           >
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-100 dark:bg-gray-800 mb-6">
+                <Card className="bg-gray-800 border-gray-700 mb-6">
                   <CardContent className="pt-6 text-center">
-                    <div className="text-4xl mb-4 text-purple-500">💬</div>
-                    <p className="text-gray-700 dark:text-gray-300 mb-4 italic">"{testimonial.text}"</p>
+                    <div className="text-4xl mb-4 text-purple-400">💬</div>
+                    <p className="text-gray-300 mb-4 italic">"{testimonial.text}"</p>
                     <Avatar className="h-16 w-16 mx-auto mb-2">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
                       <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
                     </Avatar>
-                    <p className="font-bold text-gray-900 dark:text-gray-100">{testimonial.name}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</p>
+                    <p className="font-bold text-purple-400">{testimonial.name}</p>
+                    <p className="text-sm text-gray-400">{testimonial.role}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -186,7 +186,7 @@ export function TestimonialsSection({ style }: TestimonialsSectionProps) {
 
   return (
     <section className="container mx-auto px-4 py-6">
-      <h2 className="text-3xl font-bold text-center mb-12">What Our Clients Say</h2>
+      <h2 className="text-3xl font-bold text-center mb-12 text-white">What Our Clients Say</h2>
       {renderContent()}
     </section>
   )
