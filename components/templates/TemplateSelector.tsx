@@ -5,14 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import HeroSection from './portfolio/HeroSection';
-import SkillsSection from './portfolio/SkillsSection';
-import ProjectsSection from './portfolio/ProjectsSection';
-import ExperienceSection from './portfolio/ExperienceSection';
-import TestimonialsSection from './portfolio/TestimonialsSection';
-import ContactSection from './portfolio/ContactSection';
+import { SkillsSection } from './portfolio/SkillsSection';
+import { ProjectsSection } from './portfolio/ProjectsSection';
+import { ExperienceSection } from './portfolio/ExperienceSection';
+import { TestimonialsSection } from './portfolio/TestimonialsSection';
+import { ContactSection } from './portfolio/ContactSection';
 import clsx from 'clsx';
-
+import { HeroSection } from './portfolio/HeroSection';
 type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
 
 const TEMPLATES = [
@@ -21,11 +20,11 @@ const TEMPLATES = [
         status: 'Available',
         components: [
             { component: HeroSection, title: '' },
-            { component: SkillsSection, title: 'Skills' },
-            { component: ProjectsSection, title: 'Projects' },
-            { component: ExperienceSection, title: 'Experience' },
-            { component: TestimonialsSection, title: 'Testimonials' },
-            { component: ContactSection, title: 'Contact' }
+            { component: SkillsSection, title: '' },
+            { component: ProjectsSection, title: '' },
+            { component: ExperienceSection, title: '' },
+            { component: TestimonialsSection, title: '' },
+            { component: ContactSection, title: '' }
         ]
     },
     { label: 'E-commerce Site', status: 'Testing', components: [] },
@@ -57,11 +56,10 @@ function TemplateCard({
             </div>
 
             <div className="aspect-[16/10] overflow-hidden rounded-lg bg-gray-700">
-                <div className="h-full scrollbar-custom overflow-y-auto p-4 space-y-6">
+                <div className="h-full scrollbar-custom overflow-y-auto p-1 py-0.5"> {/* Further reduced padding here */}
                     {components.length > 0 ? (
                         components.map(({ component: Component, title }, index) => (
-                            <div key={index} className="space-y-4">
-                                <h3 className="text-xl font-semibold text-gray-300">{title}</h3>
+                            <div key={index} className="mb-1"> {/* Further reduced margin-bottom here */}
                                 <Component style={style} onStyleChange={() => { }} />
                             </div>
                         ))
@@ -86,6 +84,8 @@ function TemplateCard({
         </div>
     );
 }
+
+
 
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
@@ -134,7 +134,7 @@ export default function TemplateSelector() {
 
     return (
         <div className="space-y-8 container mx-auto px-4 py-6">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-3 gap-1">
                 <h2 className="text-3xl font-bold text-gray-100">Choose Your Template</h2>
                 <div className="flex gap-4">
                     <Select
