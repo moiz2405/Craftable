@@ -4,8 +4,9 @@
 @layer base {
   /* Tailwind Custom Scrollbar Styles */
 /* Webkit scrollbars (Chrome, Safari, Edge) */
+/* Thin Scrollbar for Webkit Browsers (Chrome, Edge, Safari) */
 .scrollbar-custom::-webkit-scrollbar {
-  width: 8px; /* Thin scrollbar */
+  width: 4px; /* Thinner scrollbar */
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
@@ -28,6 +29,8 @@
   scrollbar-width: thin; /* Thin scrollbar */
   scrollbar-color: #9b4dff #202020; /* Thumb and Track colors for Firefox */
 }
+
+
 
 
   @media (max-width: 1200px) {

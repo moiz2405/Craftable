@@ -28,7 +28,7 @@ const TEMPLATES = [
             { component: ContactSection, title: 'Contact' }
         ]
     },
-    { label: 'E-commerce Site', status: 'Available', components: [] },
+    { label: 'E-commerce Site', status: 'Testing', components: [] },
     { label: 'Business Site', status: 'Upcoming', components: [] },
     { label: 'Blog Site', status: 'Upcoming', components: [] },
     { label: 'Landing Page', status: 'Upcoming', components: [] },
@@ -46,8 +46,8 @@ function TemplateCard({
     components: { component: React.ComponentType; title: string }[];
 }) {
     return (
-        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden">
-            <div className="bg-gray-900 p-2 flex items-center justify-between">
+        <div className="w-full bg-gray-800 text-white shadow-lg rounded-lg border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+            <div className="bg-gray-900 p-3 flex items-center justify-between">
                 <div className="flex space-x-2">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
                     <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -56,8 +56,8 @@ function TemplateCard({
                 <div className="text-sm text-gray-400">Template Preview</div>
             </div>
 
-            <div className="aspect-[16/10] overflow-hidden">
-                <div className="h-full overflow-y-auto scrollbar-custom p-4 space-y-4">
+            <div className="aspect-[16/10] overflow-hidden rounded-lg bg-gray-700">
+                <div className="h-full scrollbar-custom overflow-y-auto p-4 space-y-6">
                     {components.length > 0 ? (
                         components.map(({ component: Component, title }, index) => (
                             <div key={index} className="space-y-4">
@@ -71,11 +71,11 @@ function TemplateCard({
                 </div>
             </div>
 
-            <div className="p-4 flex justify-center bg-gray-900">
+            <div className="p-4 flex justify-center bg-gray-900 rounded-b-lg">
                 <Button
                     onClick={onSelect}
                     className={clsx(
-                        "w-full max-w-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300",
+                        "w-full max-w-xs bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-300 hover:from-purple-700 hover:to-pink-700",
                         isSelected && "bg-gradient-to-l"
                     )}
                     aria-pressed={isSelected}
@@ -92,16 +92,14 @@ function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'
     return (
         <Button
             onClick={onClick}
-            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-2' : 'right-2'} 
-                bg-gray-800 text-white hover:bg-gray-700 z-10 rounded-full p-5`} // Increased padding to make the button larger
+            className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-4' : 'right-4'} 
+                bg-gray-900 text-white hover:bg-gray-800 z-10 rounded-full p-4 transition-all duration-300 hover:scale-125`} // Larger buttons with scale effect
             aria-label={direction === 'left' ? 'Previous style' : 'Next style'}
         >
-            <Icon size={32} /> {/* Increased icon size */}
+            <Icon size={32} />
         </Button>
     );
 }
-
-
 
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
@@ -129,7 +127,7 @@ export default function TemplateSelector() {
     const selectedTemplateData = TEMPLATES.find((template) => template.label === selectedTemplate);
 
     return (
-        <div className="space-y-8 container mx-auto px-4 py-2">
+        <div className="space-y-8 container mx-auto px-4 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
                 <h2 className="text-3xl font-bold text-gray-100">Choose Your Template</h2>
                 <div className="flex gap-4">
@@ -137,7 +135,7 @@ export default function TemplateSelector() {
                         value={selectedTemplate}
                         onValueChange={(value) => setSelectedTemplate(value)}
                     >
-                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700">
+                        <SelectTrigger className="w-[280px] bg-gray-800 text-white border-gray-700 rounded-lg">
                             <SelectValue placeholder="Select a template" />
                         </SelectTrigger>
                         <SelectContent>
@@ -146,7 +144,7 @@ export default function TemplateSelector() {
                                     key={label}
                                     value={label}
                                     disabled={status === 'Upcoming'}
-                                    className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-100')}
+                                    className={clsx(status === 'Upcoming' && 'text-gray-500 cursor-not-allowed', 'text-gray-900')}
                                 >
                                     {label} ({status})
                                 </SelectItem>
@@ -154,9 +152,9 @@ export default function TemplateSelector() {
                         </SelectContent>
                     </Select>
                     <Button
-                        onClick={() => {/* Your continue button action */ }}
+                        onClick={() => {/* Continue button action */ }}
                         disabled={!selectedTemplate}
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold transition-all duration-300 w-full max-w-xs"
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-300 w-full max-w-xs"
                     >
                         Continue
                     </Button>
@@ -184,13 +182,13 @@ export default function TemplateSelector() {
                 </AnimatePresence>
             </div>
 
-            {/* Separate Container for Navigation Buttons */}
-            <div className="flex justify-center mt-4 space-x-2">
+            {/* Navigation Buttons */}
+            <div className="flex justify-center mt-6 space-x-4">
                 <CarouselNavButton direction="left" onClick={() => handleNav('prev')} />
                 <CarouselNavButton direction="right" onClick={() => handleNav('next')} />
             </div>
 
-            {/* Bottom Style Selection Buttons */}
+            {/* Style Selection Buttons */}
             <div className="flex justify-center mt-4 space-x-2">
                 {['style1', 'style2', 'style3', 'style4', 'style5'].map((style, index) => (
                     <Button
@@ -205,6 +203,5 @@ export default function TemplateSelector() {
                 ))}
             </div>
         </div>
-
     );
 }
