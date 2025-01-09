@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion';
 
+// Define fadeInVariants
+const fadeInVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+};
+
 interface SectionProps {
     children: React.ReactNode;
     className?: string;
