@@ -4,7 +4,7 @@ import Navbar from "@/components/common/Navbar";
 
 export const metadata: Metadata = {
   title: "Craftable",
-  description: "Create Your Website In Minutes",
+  description: "Websites Made In Minutes",
 };
 
 export default function RootLayout({
@@ -14,12 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-   
-        <body>
-          <Navbar />
-          {children}
-        </body>
-      
+
+      <body>
+        <Navbar />
+        {children}
+      </body>
+
     </html>
   );
 }
