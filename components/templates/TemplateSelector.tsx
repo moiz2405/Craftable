@@ -5,14 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { HeroSection } from './portfolio/HeroSection';
 import { SkillsSection } from './portfolio/SkillsSection';
 import { ProjectsSection } from './portfolio/ProjectsSection';
 import { ExperienceSection } from './portfolio/ExperienceSection';
 import { TestimonialsSection } from './portfolio/TestimonialsSection';
 import { ContactSection } from './portfolio/ContactSection';
 import clsx from 'clsx';
-import { HeroSection } from './portfolio/HeroSection';
-// type StyleType = 'style1' | 'style2' | 'style3' | 'style4' | 'style5';
+
 import { StyleType, ComponentProps, TemplateCardProps } from '../../types';
 
 const TEMPLATES = [
