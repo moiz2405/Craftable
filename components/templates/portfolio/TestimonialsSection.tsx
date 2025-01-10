@@ -3,9 +3,9 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-interface TestimonialsSectionProps {
-  style: 'style1' | 'style2' | 'style3' | 'style4' | 'style5'
+import { StyleType } from '../../../types';
+interface StyleProps {
+  style: StyleType
 }
 
 const testimonials = [
@@ -14,7 +14,7 @@ const testimonials = [
   { name: 'Alex Johnson', role: 'Product Manager, InnovateTech', text: 'Our project was delivered on time and exceeded our expectations. A true professional in every sense.', avatar: '/placeholder.svg?height=50&width=50' },
 ]
 
-export function TestimonialsSection({ style }: TestimonialsSectionProps) {
+export function TestimonialsSection({ style }: StyleProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

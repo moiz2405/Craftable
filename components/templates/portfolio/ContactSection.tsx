@@ -6,12 +6,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Send, Mail, Phone, MapPin } from 'lucide-react'
-
-interface ContactSectionProps {
-    style: 'style1' | 'style2' | 'style3' | 'style4' | 'style5'
+import { StyleType } from '../../../types';
+interface StyleProps {
+    style: StyleType
 }
 
-export function ContactSection({ style }: ContactSectionProps) {
+export function ContactSection({ style }: StyleProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {

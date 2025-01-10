@@ -3,9 +3,9 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Code, Database, Globe, Laptop, Server, Smartphone } from 'lucide-react'
-
-interface SkillsSectionProps {
-    style: 'style1' | 'style2' | 'style3' | 'style4' | 'style5'
+import { StyleType } from '../../../types';
+interface StyleProps {
+    style: StyleType
 }
 
 const skills = [
@@ -17,7 +17,7 @@ const skills = [
     { name: 'HTML', icon: <Globe className="h-6 w-6" /> },
 ]
 
-export function SkillsSection({ style }: SkillsSectionProps) {
+export function SkillsSection({ style }: StyleProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
