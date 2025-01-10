@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Github, ExternalLink, Code, Layers, Database, Globe, Smartphone, Server } from 'lucide-react'
 import Link from "next/link"
-
-interface ProjectsSectionProps {
-    style: 'style1' | 'style2' | 'style3' | 'style4' | 'style5'
+import { StyleType } from '../../../types';
+interface StyleProps {
+    style: StyleType
 }
 
 const projects = [
@@ -16,7 +16,7 @@ const projects = [
     { title: 'Portfolio Website', description: 'A responsive portfolio site using Next.js and Tailwind CSS', icon: <Globe className="h-6 w-6" />, github: '#', demo: '#', tags: ['Next.js', 'Tailwind CSS'] },
 ]
 
-export function ProjectsSection({ style }: ProjectsSectionProps) {
+export function ProjectsSection({ style }: StyleProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
