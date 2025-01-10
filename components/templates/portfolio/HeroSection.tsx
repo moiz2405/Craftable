@@ -6,6 +6,7 @@ import { ArrowRight, Code2, Laptop, Zap, Github, Linkedin } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
 import { StyleType } from '../../../types';
+
 interface StyleProps {
     style: StyleType
 }
@@ -111,9 +112,12 @@ export function HeroSection({ style }: StyleProps) {
                         transition={{ duration: 0.8 }}
                         className="relative overflow-hidden rounded-3xl shadow-2xl"
                     >
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&h=800&q=80"
                             alt="Hero Background"
+                            layout="responsive"
+                            width={1600}
+                            height={800}
                             className="w-full h-auto object-cover"
                         />
                         <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
@@ -153,9 +157,11 @@ export function HeroSection({ style }: StyleProps) {
                                     animate={{ rotate: 360 }}
                                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                                 >
-                                    <img
-                                        src="/placeholder.svg?height=300&width=300"
+                                    <Image
+                                        src="/placeholder.svg"
                                         alt="Digital Illustration"
+                                        height={300}
+                                        width={300}
                                         className="w-full h-full object-cover mix-blend-overlay"
                                     />
                                 </motion.div>
