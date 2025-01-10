@@ -3,9 +3,9 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Briefcase, Calendar } from 'lucide-react'
-
-interface ExperienceSectionProps {
-    style: 'style1' | 'style2' | 'style3' | 'style4' | 'style5'
+import { StyleType } from '../../../types';
+interface StyleProps {
+    style: StyleType
 }
 
 const experiences = [
@@ -14,7 +14,7 @@ const experiences = [
     { company: 'Digital Creations', role: 'Junior Developer', period: '2016 - 2018' },
 ]
 
-export function ExperienceSection({ style }: ExperienceSectionProps) {
+export function ExperienceSection({ style }: StyleProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
