@@ -18,14 +18,9 @@ const CustomizePageContent = () => {
     }
 
     return (
-        <div className="p-6 space-y-4">
-            <h1 className="text-2xl font-bold">Customize Your Template</h1>
-            <p className="text-gray-600">
-                You selected template: <span className="font-semibold">{selectedTemplate.label}</span>
-            </p>
-            <p className="text-gray-600">
-                Selected style: <span className="font-semibold">{selectedStyle}</span>
-            </p>
+        <div className="p-6 space-y-4 bg-gradient-to-b from-purple-900 to-black">
+            <span className="text-4xl md:text-4xl font-extrabold mb-6 text-center z-10 font-2xl  text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Customize Your Template</span>
+
 
             <div className="space-y-4">
                 {selectedTemplate.components.length > 0 ? (
