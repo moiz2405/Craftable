@@ -2,38 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-import { HeroSection } from './portfolio/HeroSection';
-import { SkillsSection } from './portfolio/SkillsSection';
-import { ProjectsSection } from './portfolio/ProjectsSection';
-import { ExperienceSection } from './portfolio/ExperienceSection';
-import { TestimonialsSection } from './portfolio/TestimonialsSection';
-import { ContactSection } from './portfolio/ContactSection';
 import clsx from 'clsx';
-
 import { StyleType, ComponentProps, TemplateCardProps } from '../../types';
+import { useRouter } from 'next/navigation'; // Import Next.js router
+import { TEMPLATES } from '../../constants/Templates'
 
-const TEMPLATES = [
-    {
-        label: 'Portfolio',
-        status: 'Available',
-        components: [
-            { component: HeroSection, title: '' },
-            { component: SkillsSection, title: '' },
-            { component: ProjectsSection, title: '' },
-            { component: ExperienceSection, title: '' },
-            { component: TestimonialsSection, title: '' },
-            { component: ContactSection, title: '' }
-        ]
-    },
-    { label: 'E-commerce Site', status: 'Testing', components: [] },
-    { label: 'Business Site', status: 'Upcoming', components: [] },
-    { label: 'Blog Site', status: 'Upcoming', components: [] },
-    { label: 'Landing Page', status: 'Upcoming', components: [] },
-];
 
 function TemplateCard({
     style,
@@ -82,9 +58,6 @@ function TemplateCard({
     );
 }
 
-
-
-
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
     return (
@@ -99,17 +72,17 @@ function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'
     );
 }
 
-const STATUS_COLORS: Record<string, string> = {
-    Available: 'text-green-500',
-    Testing: 'text-yellow-500',
-    Upcoming: 'text-red-500',
-};
 
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
     const [isLoading, setIsLoading] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState<string>(TEMPLATES[0].label);
     const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
+    const router = useRouter();
+
+    const handleContinue = () => {
+        router.push(`/customize?template=${selectedTemplate}&style=${selectedStyle}`);
+    };
 
     useEffect(() => {
         if (isLoading) {
@@ -167,10 +140,8 @@ export default function TemplateSelector() {
                         </SelectContent>
                     </Select>
 
-
-
                     <Button
-                        onClick={() => {/* Continue button action */ }}
+                        onClick={handleContinue}
                         disabled={!selectedTemplate}
                         className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-300 w-full max-w-xs"
                     >
