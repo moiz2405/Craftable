@@ -1,8 +1,8 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 import { TEMPLATES } from '../../constants/Templates';
-import { StyleType } from '../../types';  // Import StyleType
-import { Suspense } from 'react';  // Import Suspense
+import { StyleType } from '../../types'; 
+import { Suspense } from 'react'; 
 
 const CustomizePageContent = () => {
     const searchParams = useSearchParams();
