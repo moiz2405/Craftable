@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "react", // Keep this line
+    "jsx": "react", // Ensure this is set to "react"
     "target": "ES2017",
     "lib": [
       "dom",
