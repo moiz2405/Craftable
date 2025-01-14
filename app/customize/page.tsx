@@ -73,6 +73,7 @@ const CustomizePageContent = () => {
                                             imageUrl={customizedData.HeroSection.imageUrl}
                                             pfpShape={customizedData.HeroSection.pfpShape || "circle"}
                                             onUpdate={(updatedData) => handleComponentUpdate('HeroSection', updatedData)}
+                                            
                                         />
                                     ) : Component === SkillsSection ? (
                                         <Component
