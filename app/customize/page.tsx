@@ -89,7 +89,7 @@ const CustomizePageContent = () => {
                                     ) : Component === ExperienceSection ? (
                                         <ExperienceSection
                                             style={selectedStyle}
-                                            experience={customizedData.ExperienceSection.experience || []}
+                                            experiences={customizedData.ExperienceSection.experience || []}
                                             onUpdate={(updatedData) => handleComponentUpdate('ExperienceSection', updatedData)}
                                         />
                                     ) : null}

@@ -11,7 +11,11 @@ interface StyleProps {
     subtitle?: string; // Optional Subtitle
     experiences?: { company: string; role: string; period: string }[]; // Optional custom experiences
 }
+interface Experienceprops {
 
+    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector\
+    onUpdate: (updatedData: any) => void;
+}
 // Default Experience Data
 const defaultExperiences = [
     { company: 'Tech Innovators', role: 'Senior Developer', period: '2020 - Present' },
