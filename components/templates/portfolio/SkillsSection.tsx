@@ -1,10 +1,5 @@
-// SkillsSection.tsx
 import { motion } from "framer-motion";
 import { Code, Globe, Server, Laptop } from 'lucide-react';
-
-interface StyleType {
-    style: "style1" | "style2" | "style3" | "style4" | "style5";
-}
 
 interface Skill {
     name: string;
@@ -29,32 +24,19 @@ const skills: Skill[] = [
 export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
+        visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
     };
 
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
+        visible: { y: 0, opacity: 1 }
     };
 
     const renderContent = () => {
         switch (style) {
             case 'style1':
                 return (
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="grid grid-cols-2 md:grid-cols-3 gap-4"
-                    >
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {skills.map((skill, index) => (
                             <motion.div
                                 key={index}
@@ -114,7 +96,6 @@ export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
                         ))}
                     </motion.div>
                 );
-
             case 'style5':
                 return (
                     <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -130,7 +111,6 @@ export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
                         ))}
                     </motion.div>
                 );
-
             default:
                 return null;
         }
