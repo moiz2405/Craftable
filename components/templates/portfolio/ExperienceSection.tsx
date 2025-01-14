@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,9 +7,13 @@ import { StyleType } from '../../../types';
 
 interface StyleProps {
     style: StyleType;
+    title?: string; // Optional Title for the Section
+    subtitle?: string; // Optional Subtitle
+    experiences?: { company: string; role: string; period: string }[]; // Optional custom experiences
 }
 
-const experiences = [
+// Default Experience Data
+const defaultExperiences = [
     { company: 'Tech Innovators', role: 'Senior Developer', period: '2020 - Present' },
     { company: 'Web Solutions Inc.', role: 'Full Stack Developer', period: '2018 - 2020' },
     { company: 'Digital Creations', role: 'Junior Developer', period: '2016 - 2018' },
@@ -26,33 +30,37 @@ const itemVariants = {
     visible: { x: 0, opacity: 1 },
 };
 
+// Reusable Card Component
+const ExperienceCard = ({ company, role, period }: { company: string; role: string; period: string }) => (
+    <motion.div variants={itemVariants}>
+        <Card className="bg-gray-800 border-gray-700 text-white">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-purple-400">
+                    <Briefcase className="h-5 w-5" />
+                    {company}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="text-lg text-gray-300">{role}</p>
+                <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
+                    <Calendar className="h-4 w-4" />
+                    {period}
+                </p>
+            </CardContent>
+        </Card>
+    </motion.div>
+);
+
 // Reusable Style Components
-const Style1 = () => (
+const Style1 = ({ experiences }: { experiences: { company: string; role: string; period: string }[] }) => (
     <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-6">
         {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-800 border-gray-700 text-white">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-purple-400">
-                            <Briefcase className="h-5 w-5" />
-                            {exp.company}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg text-gray-300">{exp.role}</p>
-                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
-                            <Calendar className="h-4 w-4" />
-                            {exp.period}
-                        </p>
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <ExperienceCard key={index} {...exp} />
         ))}
     </motion.div>
 );
 
-// Repeat for other styles (Style2, Style3, etc.)
-const Style2 = () => (
+const Style2 = ({ experiences }: { experiences: { company: string; role: string; period: string }[] }) => (
     <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -60,28 +68,12 @@ const Style2 = () => (
         className="relative border-l-4 border-purple-500 pl-6 ml-6 space-y-6"
     >
         {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-800 border-gray-700 text-white">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-purple-400">
-                            <Briefcase className="h-5 w-5" />
-                            {exp.company}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg text-gray-300">{exp.role}</p>
-                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
-                            <Calendar className="h-4 w-4" />
-                            {exp.period}
-                        </p>
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <ExperienceCard key={index} {...exp} />
         ))}
     </motion.div>
 );
 
-const Style3 = () => (
+const Style3 = ({ experiences }: { experiences: { company: string; role: string; period: string }[] }) => (
     <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -89,28 +81,12 @@ const Style3 = () => (
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
     >
         {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-800 border-gray-700 text-white">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-purple-400">
-                            <Briefcase className="h-5 w-5" />
-                            {exp.company}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg text-gray-300">{exp.role}</p>
-                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
-                            <Calendar className="h-4 w-4" />
-                            {exp.period}
-                        </p>
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <ExperienceCard key={index} {...exp} />
         ))}
     </motion.div>
 );
 
-const Style4 = () => (
+const Style4 = ({ experiences }: { experiences: { company: string; role: string; period: string }[] }) => (
     <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -118,28 +94,12 @@ const Style4 = () => (
         className="space-y-8"
     >
         {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-800 border-gray-700 text-white">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-purple-400">
-                            <Briefcase className="h-5 w-5" />
-                            {exp.company}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg text-gray-300">{exp.role}</p>
-                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
-                            <Calendar className="h-4 w-4" />
-                            {exp.period}
-                        </p>
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <ExperienceCard key={index} {...exp} />
         ))}
     </motion.div>
 );
 
-const Style5 = () => (
+const Style5 = ({ experiences }: { experiences: { company: string; role: string; period: string }[] }) => (
     <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -147,29 +107,13 @@ const Style5 = () => (
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
     >
         {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-                <Card className="bg-gray-800 border-gray-700 text-white">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-purple-400">
-                            <Briefcase className="h-5 w-5" />
-                            {exp.company}
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-lg text-gray-300">{exp.role}</p>
-                        <p className="text-sm text-gray-400 flex items-center gap-1 mt-2">
-                            <Calendar className="h-4 w-4" />
-                            {exp.period}
-                        </p>
-                    </CardContent>
-                </Card>
-            </motion.div>
+            <ExperienceCard key={index} {...exp} />
         ))}
     </motion.div>
 );
 
 // Map styles to components
-const styleMap: { [key in StyleType]: React.FC } = {
+const styleMap: { [key in StyleType]: React.FC<{ experiences: { company: string; role: string; period: string }[] }> } = {
     style1: Style1,
     style2: Style2,
     style3: Style3,
@@ -178,12 +122,13 @@ const styleMap: { [key in StyleType]: React.FC } = {
 };
 
 // Experience Section Component
-export function ExperienceSection({ style }: StyleProps) {
+export function ExperienceSection({ style, title = "My Experience", subtitle = "Past roles and responsibilities", experiences = defaultExperiences }: StyleProps) {
     const RenderStyle = styleMap[style] || (() => <p>Style not found</p>);
     return (
         <section className="container mx-auto px-4 py-6">
-            <h2 className="text-3xl font-bold text-center mb-12 text-white">My Experience</h2>
-            <RenderStyle />
+            <h2 className="text-3xl font-bold text-center mb-12 text-white">{title}</h2>
+            {subtitle && <p className="text-center text-gray-400 mb-8">{subtitle}</p>}
+            <RenderStyle experiences={experiences} />
         </section>
     );
 }
