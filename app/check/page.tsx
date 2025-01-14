@@ -15,7 +15,7 @@ export default function Page() {
                     github: "https://github.com/yourusername",
                     linkedin: "https://www.linkedin.com/in/yourusername"
                 }}
-                imageUrl="/profile-image.jpg"
+                imageUrl="/profile-image.jpg"as dsad ff 
                 style="style1"
             />
         </>
