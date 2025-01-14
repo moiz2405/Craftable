@@ -15,6 +15,10 @@ interface ProjectProps {
 interface ProjectsSectionProps {
     style: "style1" | "style2" | "style3" | "style4" | "style5"; // Style prop
     projects?: ProjectProps[]; // Optional array of projects (can be passed dynamically)
+    title?: string;  // Optional title
+    subtitle?: string;  // Optional subtitle
+    buttonText1?: string;  // Optional button text 1
+    buttonLink1?: string;  // Optional button link 1
 }
 
 export function ProjectsSection({
@@ -45,6 +49,10 @@ export function ProjectsSection({
             tags: ["Next.js", "Tailwind CSS"],
         },
     ], // Default projects list
+    title = "Projects",  // Default title
+    subtitle = "Here are some of my projects",  // Default subtitle
+    buttonText1 = "View All",  // Default button text
+    buttonLink1 = "#",  // Default button link
 }: ProjectsSectionProps) {
 
     const containerVariants = {
@@ -95,6 +103,13 @@ export function ProjectsSection({
             animate="visible"
             className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${style}`}
         >
+            <div className="col-span-full">
+                <h2 className="text-2xl font-bold">{title}</h2>
+                <p className="text-lg text-gray-300">{subtitle}</p>
+                <Link href={buttonLink1}>
+                    <Button className="mt-4">{buttonText1}</Button>
+                </Link>
+            </div>
             {projects.map(renderProjectCard)}
         </motion.div>
     );
