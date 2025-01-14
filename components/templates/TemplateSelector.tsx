@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
-import { StyleType, ComponentProps, TemplateCardProps } from '../../types';
+import { StyleType, TemplateCardProps } from '../../types';
 import { useRouter } from 'next/navigation'; // Import Next.js router
-import { TEMPLATES } from '../../constants/Templates'
-
+import { TEMPLATES } from '../../constants/Templates';
 
 function TemplateCard({
     style,
@@ -29,10 +28,11 @@ function TemplateCard({
             </div>
 
             <div className="aspect-[16/10] overflow-hidden rounded-lg bg-gray-700">
-                <div className="h-full scrollbar-custom overflow-y-auto p-1 py-0.5"> {/* Further reduced padding here */}
+                <div className="h-full scrollbar-custom overflow-y-auto p-1 py-0.5">
                     {components.length > 0 ? (
                         components.map(({ component: Component, title }, index) => (
-                            <div key={index} className="mb-1"> {/* Further reduced margin-bottom here */}
+                            <div key={index} className="mb-1">
+                                <div className="p-2 text-gray-100">{title}</div>
                                 <Component style={style} onStyleChange={() => { }} />
                             </div>
                         ))
@@ -64,14 +64,13 @@ function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'
         <Button
             onClick={onClick}
             className={`absolute top-1/2 transform -translate-y-1/2 ${direction === 'left' ? 'left-4' : 'right-4'} 
-                bg-gray-900 text-white hover:bg-gray-800 z-10 rounded-full p-4 transition-all duration-300 hover:scale-125`} // Larger buttons with scale effect
+          bg-gray-900 text-white hover:bg-gray-800 z-10 rounded-full p-4 transition-all duration-300 hover:scale-125`}
             aria-label={direction === 'left' ? 'Previous style' : 'Next style'}
         >
             <Icon size={32} />
         </Button>
     );
 }
-
 
 export default function TemplateSelector() {
     const [selectedStyle, setSelectedStyle] = useState<StyleType>('style1');
@@ -130,7 +129,7 @@ export default function TemplateSelector() {
                                     <span>{label}</span>
                                     <span
                                         className={clsx(
-                                            'w-3 h-3 rounded-full ml-2', // Added margin-left for better spacing
+                                            'w-3 h-3 rounded-full ml-2',
                                             status === 'Available' ? 'bg-green-500' :
                                                 status === 'Testing' ? 'bg-yellow-500' : 'bg-red-500'
                                         )}
