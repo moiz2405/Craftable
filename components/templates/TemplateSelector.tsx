@@ -6,9 +6,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
-import { StyleType, TemplateCardProps } from '../../types';
+import { StyleType } from '../../types';
 import { useRouter } from 'next/navigation'; // Import Next.js router
 import { TEMPLATES } from '../../constants/Templates';
+interface TemplateCardProps {
+    style: string;
+    onSelect: () => void;
+    isSelected: boolean;
+    components: { component: React.ComponentType<any>; title: string }[]; // Adjusting the type here
+}
 
 function TemplateCard({
     style,
@@ -57,6 +63,7 @@ function TemplateCard({
         </div>
     );
 }
+
 
 function CarouselNavButton({ direction, onClick }: { direction: 'left' | 'right'; onClick: () => void; }) {
     const Icon = direction === 'left' ? ChevronLeft : ChevronRight;
