@@ -84,6 +84,22 @@ export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
                         ))}
                     </motion.div>
                 );
+            case 'style3':
+                return (
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {skills.map((skill, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                className="relative bg-gray-700 p-8 rounded-lg text-white shadow-lg"
+                            >
+                                <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url('/path-to-background-image.jpg')` }}></div>
+                                <span className="relative z-10 flex items-center justify-center gap-2 text-2xl">{skill.icon} {skill.name}</span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                );
+
 
             default:
                 return null;
