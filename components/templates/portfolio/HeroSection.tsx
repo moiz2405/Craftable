@@ -1,20 +1,35 @@
-'use client'
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Code2, Laptop, Zap, Github, Linkedin } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Code2, Laptop, Zap, Github, Linkedin } from 'lucide-react'
-import Link from "next/link"
-import Image from "next/image"
-import { StyleType } from '../../../types';
-
-interface StyleProps {
-    style: StyleType
+interface HeroProps {
+    title: string;
+    subtitle: string;
+    buttonText1: string;
+    buttonText2?: string;
+    buttonLink1: string;
+    buttonLink2?: string;
+    socialLinks?: { github?: string; linkedin?: string };
+    imageUrl?: string;
+    style: "style1" | "style2" | "style3" | "style4" | "style5";
 }
 
-export function HeroSection({ style }: StyleProps) {
+export function HeroSection({
+    title = "Welcome to My Portfolio",
+    subtitle = "Showcasing My Work and Projects",
+    buttonText1 = "Get Started",
+    buttonText2 = "Learn More",
+    buttonLink1 = "#",
+    buttonLink2 = "#",
+    socialLinks = { github: "#", linkedin: "#" },
+    imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    style = "style1",
+}: HeroProps) {
     const renderContent = () => {
         switch (style) {
-            case 'style1':
+            case "style1":
                 return (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -22,161 +37,182 @@ export function HeroSection({ style }: StyleProps) {
                         transition={{ duration: 0.8 }}
                         className="text-center bg-gradient-to-br from-gray-900 to-gray-800 p-8 md:p-16 rounded-3xl shadow-2xl text-white"
                     >
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Welcome to My Portfolio</h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-8">Crafting digital experiences that inspire and engage</p>
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                            {title}
+                        </h1>
+                        <p className="text-xl md:text-2xl text-gray-300 mb-8">{subtitle}</p>
                         <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
-                                <Link href="#contact">
-                                    Get in Touch <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
-                            <Button asChild size="lg" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-colors duration-300">
-                                <Link href="#projects">
-                                    View Projects <Code2 className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                            {buttonLink1 && (
+                                <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
+                                    <Link href={buttonLink1}>
+                                        {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            )}
+                            {buttonText2 && buttonLink2 && (
+                                <Button asChild size="lg" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-colors duration-300">
+                                    <Link href={buttonLink2}>
+                                        {buttonText2} <Code2 className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
-                        <div className="mt-8 flex justify-center space-x-4">
-                            <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                                <Github className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
-                            </Link>
-                            <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                                <Linkedin className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
-                            </Link>
-                        </div>
+                        {socialLinks && (
+                            <div className="mt-8 flex justify-center space-x-4">
+                                {socialLinks.github && (
+                                    <Link href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                                        <Github className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
+                                    </Link>
+                                )}
+                                {socialLinks.linkedin && (
+                                    <Link href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                                        <Linkedin className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
+                                    </Link>
+                                )}
+                            </div>
+                        )}
                     </motion.div>
-                )
-            case 'style2':
+                );
+            case "style2":
                 return (
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="flex flex-col md:flex-row items-center justify-between bg-gray-900 p-8 md:p-16 rounded-3xl shadow-2xl text-white"
+                        className="flex flex-col md:flex-row items-center bg-gradient-to-bl from-blue-900 to-gray-800 p-8 md:p-16 rounded-3xl shadow-2xl text-white"
                     >
-                        <div className="w-full md:w-1/2 mb-8 md:mb-0">
-                            <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Hi, I'm John Doe</h1>
-                            <p className="text-xl md:text-2xl text-gray-300 mb-8">Full-stack developer passionate about creating innovative solutions</p>
-                            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
-                                <Link href="#projects">
-                                    View My Work <Laptop className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                        <div className="md:w-1/2">
+                            <h1 className="text-5xl font-bold mb-4">{title}</h1>
+                            <p className="text-lg text-gray-300 mb-6">{subtitle}</p>
+                            <div className="flex gap-4">
+                                {buttonLink1 && (
+                                    <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
+                                        <Link href={buttonLink1}>
+                                            {buttonText1} <Zap className="ml-2 h-4 w-4" />
+                                        </Link>
+                                    </Button>
+                                )}
+                                {buttonText2 && buttonLink2 && (
+                                    <Button asChild size="lg" variant="outline" className="border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white">
+                                        <Link href={buttonLink2}>
+                                            {buttonText2} <Laptop className="ml-2 h-4 w-4" />
+                                        </Link>
+                                    </Button>
+                                )}
+                            </div>
                         </div>
-                        <div className="w-full md:w-1/2 relative">
-                            <motion.div
-                                className="w-64 h-64 mx-auto bg-gradient-to-br from-purple-600 to-pink-600 rounded-full overflow-hidden shadow-2xl"
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                            >
+                        {imageUrl && (
+                            <div className="md:w-1/2 mt-6 md:mt-0">
                                 <Image
-                                    src="/placeholder.svg"
-                                    alt="John Doe"
-                                    height={400}
-                                    width={400}
-                                    className="w-full h-full object-cover mix-blend-overlay"
+                                    src={imageUrl}
+                                    alt="Hero Image"
+                                    width={200} // Set a fixed width
+                                    height={200} // Set a fixed height
+                                    className="object-cover rounded-lg shadow-lg ml-10"
                                 />
-                            </motion.div>
-                        </div>
+                            </div>
+                        )}
+
                     </motion.div>
-                )
-            case 'style3':
+                );
+            case "style3":
                 return (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-8 md:p-16 rounded-3xl shadow-2xl text-white"
+                        className="relative bg-gradient-to-br from-green-700 to-teal-600 p-10 rounded-3xl shadow-2xl text-white text-center"
                     >
-                        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Elevate Your Digital Presence</h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-8">Let's create something extraordinary together</p>
-                        <div className="flex flex-col sm:flex-row justify-center gap-4">
-                            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
-                                <Link href="#projects">
-                                    View Projects <Code2 className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
-                            <Button asChild size="lg" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-colors duration-300">
-                                <Link href="#contact">
-                                    Contact Me <ArrowRight className="ml-2 h-4 w-4" />
-                                </Link>
-                            </Button>
+                        <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-green-100">
+                            {title}
+                        </h1>
+                        <p className="text-lg mt-4 text-green-200">{subtitle}</p>
+                        <div className="mt-6">
+                            {buttonLink1 && (
+                                <Button asChild size="lg" className="bg-teal-500 hover:bg-teal-600">
+                                    <Link href={buttonLink1}>
+                                        {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
                     </motion.div>
-                )
-            case 'style4':
+                );
+            case "style4":
                 return (
                     <motion.div
-                        initial={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="relative overflow-hidden rounded-3xl shadow-2xl"
+                        className="bg-black text-white p-8 rounded-lg shadow-md"
                     >
-                        <Image
-                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&h=800&q=80"
-                            alt="Hero Background"
-                            layout="responsive"
-                            width={1600}
-                            height={800}
-                            className="w-full h-auto object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
-                            <div className="text-center text-white p-8">
-                                <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Innovative Web Solutions</h1>
-                                <p className="text-xl md:text-2xl text-gray-300 mb-8">Crafting digital experiences that inspire and engage</p>
-                                <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
-                                    <Link href="#contact">
-                                        Start a Project <Zap className="ml-2 h-4 w-4" />
-                                    </Link>
-                                </Button>
+                        <div className="flex flex-col md:flex-row items-center">
+                            <div className="md:w-1/2">
+                                <h1 className="text-4xl font-bold">{title}</h1>
+                                <p className="mt-4">{subtitle}</p>
+                                <div className="mt-6 flex gap-4">
+                                    {buttonLink1 && (
+                                        <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200">
+                                            <Link href={buttonLink1}>
+                                                {buttonText1} <Zap className="ml-2 h-4 w-4" />
+                                            </Link>
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
+                            {imageUrl && (
+                                <Image
+                                    src={imageUrl}
+                                    alt="Hero Image"
+                                    width={200} // Set a fixed width
+                                    height={200} // Set a fixed height
+                                    className="rounded-lg shadow-lg m-10"
+                                />
+                            )}
+
                         </div>
                     </motion.div>
-                )
-            case 'style5':
+                );
+            case "style5":
                 return (
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-8 md:p-16 rounded-3xl shadow-2xl text-white"
+                        className="text-center bg-gradient-to-r from-gray-700 to-gray-900 p-10 rounded-lg shadow-lg"
                     >
-                        <div className="flex flex-col md:flex-row items-center justify-between">
-                            <div className="w-full md:w-1/2 mb-8 md:mb-0">
-                                <h1 className="text-4xl md:text-5xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Transforming Ideas into Reality</h1>
-                                <p className="text-xl md:text-2xl text-gray-300 mb-8">Innovative solutions for the digital age</p>
-                                <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700 text-white transition-colors duration-300">
-                                    <Link href="#projects">
-                                        Explore My Work <ArrowRight className="ml-2 h-4 w-4" />
+                        <h1 className="text-3xl font-bold text-white">{title}</h1>
+                        <p className="text-gray-300 mt-4">{subtitle}</p>
+                        <div className="mt-6 flex justify-center space-x-4">
+                            {buttonLink1 && (
+                                <Button asChild size="lg" className="bg-gray-800 hover:bg-gray-700 text-white">
+                                    <Link href={buttonLink1}>
+                                        {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>
-                            </div>
-                            <div className="w-full md:w-1/2 flex justify-center">
-                                <motion.div
-                                    className="w-64 h-64 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full overflow-hidden shadow-2xl"
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                >
-                                    <Image
-                                        src="/placeholder.svg"
-                                        alt="Digital Illustration"
-                                        height={300}
-                                        width={300}
-                                        className="w-full h-full object-cover mix-blend-overlay"
-                                    />
-                                </motion.div>
-                            </div>
+                            )}
                         </div>
+                        {socialLinks && (
+                            <div className="mt-8 flex justify-center space-x-4">
+                                {socialLinks.github && (
+                                    <Link href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                                        <Github className="h-6 w-6 text-gray-400 hover:text-white transition-colors duration-300" />
+                                    </Link>
+                                )}
+                                {socialLinks.linkedin && (
+                                    <Link href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                                        <Linkedin className="h-6 w-6 text-gray-400 hover:text-white transition-colors duration-300" />
+                                    </Link>
+                                )}
+                            </div>
+                        )}
                     </motion.div>
-                )
-            default:
-                return null
-        }
-    }
+                );
 
-    return (
-        <section className="container mx-auto px-4 py-6">
-            {renderContent()}
-        </section>
-    )
+            default:
+                return null;
+        }
+    };
+
+    return <>{renderContent()}</>;
 }
