@@ -184,7 +184,6 @@ const CustomizePageContent = () => {
 
                         <div>
                             <h3 className="text-xl font-bold">Skills Section</h3>
-                            {/* Input for SkillsSection */}
                             <div>
                                 <label className="block text-lg font-semibold">Skills:</label>
                                 <textarea
@@ -199,7 +198,6 @@ const CustomizePageContent = () => {
 
                         <div>
                             <h3 className="text-xl font-bold">Projects Section</h3>
-                            {/* Input for ProjectsSection */}
                             <div>
                                 <label className="block text-lg font-semibold">Projects (comma separated):</label>
                                 <textarea
@@ -214,7 +212,6 @@ const CustomizePageContent = () => {
 
                         <div>
                             <h3 className="text-xl font-bold">Experience Section</h3>
-                            {/* Input for ExperienceSection */}
                             <div>
                                 <label className="block text-lg font-semibold">Experience (comma separated):</label>
                                 <textarea
