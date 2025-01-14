@@ -61,7 +61,7 @@ const CustomizePageContent = () => {
                             selectedTemplate.components.map(({ component: Component }, index) => (
                                 <div key={index} className="p-6 border rounded-xl shadow-lg bg-white text-black">
                                     {Component === HeroSection ? (
-                                        <Component
+                                        <HeroSection
                                             style={selectedStyle}
                                             title={customizedData.HeroSection.title || "Welcome to My Portfolio"}
                                             subtitle={customizedData.HeroSection.subtitle || "Showcasing My Work and Projects"}
@@ -73,28 +73,28 @@ const CustomizePageContent = () => {
                                             imageUrl={customizedData.HeroSection.imageUrl}
                                             pfpShape={customizedData.HeroSection.pfpShape || "circle"}
                                             onUpdate={(updatedData) => handleComponentUpdate('HeroSection', updatedData)}
-                                            
                                         />
                                     ) : Component === SkillsSection ? (
-                                        <Component
+                                        <SkillsSection
                                             style={selectedStyle}
                                             skills={customizedData.SkillsSection.skills || []}
                                             onUpdate={(updatedData) => handleComponentUpdate('SkillsSection', updatedData)}
                                         />
                                     ) : Component === ProjectsSection ? (
-                                        <Component
+                                        <ProjectsSection
                                             style={selectedStyle}
                                             projects={customizedData.ProjectsSection.projects || []}
                                             onUpdate={(updatedData) => handleComponentUpdate('ProjectsSection', updatedData)}
                                         />
                                     ) : Component === ExperienceSection ? (
-                                        <Component
+                                        <ExperienceSection
                                             style={selectedStyle}
                                             experience={customizedData.ExperienceSection.experience || []}
                                             onUpdate={(updatedData) => handleComponentUpdate('ExperienceSection', updatedData)}
                                         />
                                     ) : null}
                                 </div>
+
                             ))
                         ) : (
                             <p className="text-gray-500">No components available for this template.</p>
