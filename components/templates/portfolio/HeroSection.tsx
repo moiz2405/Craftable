@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code2, Laptop, Zap, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -15,7 +15,7 @@ interface HeroProps {
     pfpImage?: string;
     pfpShape?: "circle" | "square";  // Prop to define the shape of the profile picture
     imageUrl?: string;
-    style: "style1" | "style2" | "style3" | "style4" | "style5";
+    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector
 }
 
 export function HeroSection({
@@ -31,8 +31,38 @@ export function HeroSection({
     imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     style = "style1",
 }: HeroProps) {
+
+    const renderSocialLinks = () => (
+        <div className="flex justify-center space-x-4 mt-6">
+            {socialLinks.github && (
+                <Link href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
+                </Link>
+            )}
+            {socialLinks.linkedin && (
+                <Link href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
+                </Link>
+            )}
+        </div>
+    );
+
+    const renderProfilePicture = () => {
+        const pfpClass = pfpShape === "circle" ? "rounded-full" : "rounded-lg";
+        return (
+            <div className="mt-6">
+                <Image
+                    src={pfpImage}
+                    alt="Profile Picture"
+                    width={120}
+                    height={120}
+                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                />
+            </div>
+        );
+    };
+
     const renderContent = () => {
-        const pfpClass = pfpShape === "circle" ? "rounded-full" : "rounded-lg"; // Apply class based on shape
         switch (style) {
             case "style1":
                 return (
@@ -57,36 +87,13 @@ export function HeroSection({
                             {buttonText2 && buttonLink2 && (
                                 <Button asChild size="lg" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white transition-colors duration-300">
                                     <Link href={buttonLink2}>
-                                        {buttonText2} <Code2 className="ml-2 h-4 w-4" />
+                                        {buttonText2} <ArrowRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>
                             )}
                         </div>
-                        {socialLinks && (
-                            <div className="mt-8 flex justify-center space-x-4">
-                                {socialLinks.github && (
-                                    <Link href={socialLinks.github} target="_blank" rel="noopener noreferrer">
-                                        <Github className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
-                                    </Link>
-                                )}
-                                {socialLinks.linkedin && (
-                                    <Link href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                                        <Linkedin className="h-6 w-6 text-gray-400 hover:text-purple-400 transition-colors duration-300" />
-                                    </Link>
-                                )}
-                            </div>
-                        )}
-                        {pfpImage && (
-                            <div className="mt-6">
-                                <Image
-                                    src={pfpImage}
-                                    alt="Profile Picture"
-                                    width={120}
-                                    height={120}
-                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
-                                />
-                            </div>
-                        )}
+                        {renderSocialLinks()}
+                        {renderProfilePicture()}
                     </motion.div>
                 );
             case "style2":
@@ -104,14 +111,14 @@ export function HeroSection({
                                 {buttonLink1 && (
                                     <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
                                         <Link href={buttonLink1}>
-                                            {buttonText1} <Zap className="ml-2 h-4 w-4" />
+                                            {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
                                         </Link>
                                     </Button>
                                 )}
                                 {buttonText2 && buttonLink2 && (
                                     <Button asChild size="lg" variant="outline" className="border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white">
                                         <Link href={buttonLink2}>
-                                            {buttonText2} <Laptop className="ml-2 h-4 w-4" />
+                                            {buttonText2} <ArrowRight className="ml-2 h-4 w-4" />
                                         </Link>
                                     </Button>
                                 )}
@@ -122,23 +129,13 @@ export function HeroSection({
                                 <Image
                                     src={imageUrl}
                                     alt="Hero Image"
-                                    width={200} // Set a fixed width
-                                    height={200} // Set a fixed height
+                                    width={200}
+                                    height={200}
                                     className="object-cover rounded-lg shadow-lg ml-10"
                                 />
                             </div>
                         )}
-                        {pfpImage && (
-                            <div className="mt-6">
-                                <Image
-                                    src={pfpImage}
-                                    alt="Profile Picture"
-                                    width={100}
-                                    height={100}
-                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
-                                />
-                            </div>
-                        )}
+                        {renderSocialLinks()}
                     </motion.div>
                 );
             case "style3":
@@ -162,17 +159,8 @@ export function HeroSection({
                                 </Button>
                             )}
                         </div>
-                        {pfpImage && (
-                            <div className="mt-6">
-                                <Image
-                                    src={pfpImage}
-                                    alt="Profile Picture"
-                                    width={100}
-                                    height={100}
-                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
-                                />
-                            </div>
-                        )}
+                        {renderSocialLinks()}
+                        {renderProfilePicture()}
                     </motion.div>
                 );
             case "style4":
@@ -191,82 +179,54 @@ export function HeroSection({
                                     {buttonLink1 && (
                                         <Button asChild size="lg" className="bg-white text-black hover:bg-gray-200">
                                             <Link href={buttonLink1}>
-                                                {buttonText1} <Zap className="ml-2 h-4 w-4" />
+                                                {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
                                             </Link>
                                         </Button>
                                     )}
                                 </div>
                             </div>
-                            {imageUrl && (
-                                <Image
-                                    src={imageUrl}
-                                    alt="Hero Image"
-                                    width={200} // Set a fixed width
-                                    height={200} // Set a fixed height
-                                    className="rounded-lg shadow-lg m-10"
-                                />
-                            )}
-                        </div>
-                        {pfpImage && (
-                            <div className="mt-6">
+                            <div className="mt-6 md:mt-0 md:w-1/2">
                                 <Image
                                     src={pfpImage}
                                     alt="Profile Picture"
-                                    width={100}
-                                    height={100}
-                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                    width={150}
+                                    height={150}
+                                    className="rounded-full mx-auto"
                                 />
                             </div>
-                        )}
+                        </div>
+                        {renderSocialLinks()}
                     </motion.div>
                 );
             case "style5":
                 return (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="text-center bg-gradient-to-r from-gray-700 to-gray-900 p-10 rounded-lg shadow-lg"
+                        className="flex flex-col items-center text-white bg-gradient-to-r from-pink-500 to-yellow-500 p-12 rounded-xl shadow-lg"
                     >
-                        <h1 className="text-3xl font-bold text-white">{title}</h1>
-                        <p className="text-gray-300 mt-4">{subtitle}</p>
-                        <div className="mt-6 flex justify-center space-x-4">
+                        <h1 className="text-3xl font-bold mb-4">{title}</h1>
+                        <p className="text-lg text-gray-200 mb-6">{subtitle}</p>
+                        <div className="flex justify-center gap-4">
                             {buttonLink1 && (
-                                <Button asChild size="lg" className="bg-gray-800 hover:bg-gray-700 text-white">
+                                <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700">
                                     <Link href={buttonLink1}>
                                         {buttonText1} <ArrowRight className="ml-2 h-4 w-4" />
                                     </Link>
                                 </Button>
                             )}
+                            {buttonText2 && buttonLink2 && (
+                                <Button asChild size="lg" variant="outline" className="border-pink-600 text-pink-400 hover:bg-pink-600 hover:text-white">
+                                    <Link href={buttonLink2}>
+                                        {buttonText2} <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            )}
                         </div>
-                        {socialLinks && (
-                            <div className="mt-8 flex justify-center space-x-4">
-                                {socialLinks.github && (
-                                    <Link href={socialLinks.github} target="_blank" rel="noopener noreferrer">
-                                        <Github className="h-6 w-6 text-gray-400 hover:text-white transition-colors duration-300" />
-                                    </Link>
-                                )}
-                                {socialLinks.linkedin && (
-                                    <Link href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
-                                        <Linkedin className="h-6 w-6 text-gray-400 hover:text-white transition-colors duration-300" />
-                                    </Link>
-                                )}
-                            </div>
-                        )}
-                        {pfpImage && (
-                            <div className="mt-6">
-                                <Image
-                                    src={pfpImage}
-                                    alt="Profile Picture"
-                                    width={100}
-                                    height={100}
-                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
-                                />
-                            </div>
-                        )}
+                        {renderProfilePicture()}
                     </motion.div>
                 );
-
             default:
                 return null;
         }
