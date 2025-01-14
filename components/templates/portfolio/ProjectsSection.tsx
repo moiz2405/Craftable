@@ -19,6 +19,7 @@ interface ProjectsSectionProps {
     subtitle?: string;  // Optional subtitle
     buttonText1?: string;  // Optional button text 1
     buttonLink1?: string;  // Optional button link 1
+    onUpdate: (updatedData: any) => void;
 }
 
 export function ProjectsSection({
