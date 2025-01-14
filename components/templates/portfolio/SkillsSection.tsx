@@ -115,6 +115,21 @@ export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
                     </motion.div>
                 );
 
+            case 'style5':
+                return (
+                    <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {skills.map((skill, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                className="bg-gray-800 p-6 rounded-lg text-center shadow-lg"
+                            >
+                                <span className="text-purple-400 text-4xl">{skill.icon}</span>
+                                <span className="text-white text-xl mt-4">{skill.name}</span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                );
 
             default:
                 return null;
