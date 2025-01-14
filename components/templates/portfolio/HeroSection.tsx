@@ -12,6 +12,8 @@ interface HeroProps {
     buttonLink1: string;
     buttonLink2?: string;
     socialLinks?: { github?: string; linkedin?: string };
+    pfpImage?: string;
+    pfpShape?: "circle" | "square";  // Prop to define the shape of the profile picture
     imageUrl?: string;
     style: "style1" | "style2" | "style3" | "style4" | "style5";
 }
@@ -24,10 +26,13 @@ export function HeroSection({
     buttonLink1 = "#",
     buttonLink2 = "#",
     socialLinks = { github: "#", linkedin: "#" },
+    pfpImage = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    pfpShape = "circle", // Default shape is circle
     imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     style = "style1",
 }: HeroProps) {
     const renderContent = () => {
+        const pfpClass = pfpShape === "circle" ? "rounded-full" : "rounded-lg"; // Apply class based on shape
         switch (style) {
             case "style1":
                 return (
@@ -71,6 +76,17 @@ export function HeroSection({
                                 )}
                             </div>
                         )}
+                        {pfpImage && (
+                            <div className="mt-6">
+                                <Image
+                                    src={pfpImage}
+                                    alt="Profile Picture"
+                                    width={120}
+                                    height={120}
+                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                />
+                            </div>
+                        )}
                     </motion.div>
                 );
             case "style2":
@@ -112,7 +128,17 @@ export function HeroSection({
                                 />
                             </div>
                         )}
-
+                        {pfpImage && (
+                            <div className="mt-6">
+                                <Image
+                                    src={pfpImage}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                />
+                            </div>
+                        )}
                     </motion.div>
                 );
             case "style3":
@@ -136,6 +162,17 @@ export function HeroSection({
                                 </Button>
                             )}
                         </div>
+                        {pfpImage && (
+                            <div className="mt-6">
+                                <Image
+                                    src={pfpImage}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                />
+                            </div>
+                        )}
                     </motion.div>
                 );
             case "style4":
@@ -169,8 +206,18 @@ export function HeroSection({
                                     className="rounded-lg shadow-lg m-10"
                                 />
                             )}
-
                         </div>
+                        {pfpImage && (
+                            <div className="mt-6">
+                                <Image
+                                    src={pfpImage}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                />
+                            </div>
+                        )}
                     </motion.div>
                 );
             case "style5":
@@ -204,6 +251,17 @@ export function HeroSection({
                                         <Linkedin className="h-6 w-6 text-gray-400 hover:text-white transition-colors duration-300" />
                                     </Link>
                                 )}
+                            </div>
+                        )}
+                        {pfpImage && (
+                            <div className="mt-6">
+                                <Image
+                                    src={pfpImage}
+                                    alt="Profile Picture"
+                                    width={100}
+                                    height={100}
+                                    className={`${pfpClass} mx-auto`} // Apply rounded shape
+                                />
                             </div>
                         )}
                     </motion.div>
