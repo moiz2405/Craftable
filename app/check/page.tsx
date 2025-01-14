@@ -12,7 +12,7 @@ export default function Page() {
                 buttonLink1="#contact"
                 buttonLink2="#projects"
                 socialLinks={{
-                    github: "https://github.com/yourusername",
+                   asd asd yourusername",asd asd 
                     linkedin: "https://www.linkedin.com/in/yourusername"
                 }}
                 imageUrl="/profile-image.jpg"as dsad ff 
