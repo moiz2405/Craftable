@@ -15,7 +15,8 @@ interface HeroProps {
     pfpImage?: string;
     pfpShape?: "circle" | "square";  // Prop to define the shape of the profile picture
     imageUrl?: string;
-    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector
+    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector\
+    onUpdate: (updatedData: any) => void;
 }
 
 export function HeroSection({
@@ -30,6 +31,7 @@ export function HeroSection({
     pfpShape = "circle", // Default shape is circle
     imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     style = "style1",
+
 }: HeroProps) {
 
     const renderSocialLinks = () => (
