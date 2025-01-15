@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { TEMPLATES } from '../../constants/Templates';
 import { HeroSection } from "@/components/templates/portfolio/HeroSection";
 import { SkillsSection } from "@/components/templates/portfolio/SkillsSection";
 import { ProjectsSection } from "@/components/templates/portfolio/ProjectsSection";
 import { ExperienceSection } from "@/components/templates/portfolio/ExperienceSection";
-import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 
 const CustomizePageContent = () => {
     const searchParams = useSearchParams();
@@ -18,11 +17,19 @@ const CustomizePageContent = () => {
         (template) => template.label === selectedTemplateLabel
     );
 
+    interface ComponentData {
+        [key: string]: unknown;
+    }
+
+    interface Template {
+        label: string;
+        components: { component: React.ComponentType<any>; name: string }[];
+    }
+
     const initialCustomizedData = selectedTemplate?.components.reduce((acc, { component: Component }) => {
         acc[Component.name] = {}; // Initialize each component with an empty object
         return acc;
-    }, {} as Record<string, Record<string, unknown>>) || {};
-
+    }, {} as Record<string, ComponentData>) || {};
 
     const [customizedData, setCustomizedData] = useState(initialCustomizedData);
 
@@ -30,24 +37,25 @@ const CustomizePageContent = () => {
         return <p className="text-red-500">Invalid template selected.</p>;
     }
 
-    const handleComponentUpdate = (componentName: string, updatedData: object) => {
+    const handleComponentUpdate = <T>(componentName: string, updatedData: T) => {
         setCustomizedData((prevData) => ({
             ...prevData,
             [componentName]: updatedData,
         }));
     };
+    
 
     const handleHeroSectionInputChange = (field: string, value: string) => {
-        setCustomizedData((prevData) => ({
-            ...prevData,
-            HeroSection: {
-                ...prevData.HeroSection,
-                [field]: value,
-            },
-        }));
+            setCustomizedData((prevData) => ({
+                ...prevData,
+                HeroSection: {
+                    ...prevData.HeroSection,
+                    [field]: value,
+                },
+            }));
     };
 
-    return (
+        return (
         <div className="p-6 space-y-8 bg-gradient-to-b from-purple-900 to-black text-white">
             <span className="text-4xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 Customize Your Template
@@ -77,8 +85,8 @@ const CustomizePageContent = () => {
                                     ) : Component === SkillsSection ? (
                                         <SkillsSection
                                             style={selectedStyle}
-
-
+                                            skills={customizedData.SkillsSection.skills || []}
+                                            onUpdate={(updatedData) => handleComponentUpdate('SkillsSection', updatedData)}
                                         />
                                     ) : Component === ProjectsSection ? (
                                         <ProjectsSection
@@ -89,7 +97,7 @@ const CustomizePageContent = () => {
                                     ) : Component === ExperienceSection ? (
                                         <ExperienceSection
                                             style={selectedStyle}
-
+                                            experience={customizedData.ExperienceSection.experience || []}
                                             onUpdate={(updatedData) => handleComponentUpdate('ExperienceSection', updatedData)}
                                         />
                                     ) : null}
@@ -227,13 +235,13 @@ const CustomizePageContent = () => {
                 </div>
             </div>
         </div>
-    );
+        );
 };
 
-export default function CustomizePage() {
+        export default function CustomizePage() {
     return (
         <Suspense fallback={<div>Loading customization options...</div>}>
             <CustomizePageContent />
         </Suspense>
-    );
+        );
 }
