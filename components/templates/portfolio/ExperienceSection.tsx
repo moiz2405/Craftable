@@ -5,12 +5,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Briefcase, Calendar } from 'lucide-react';
 import { StyleType } from '../../../types';
 
+interface Experience {
+    company: string;
+    role: string;
+    period: string;
+}
+
 interface StyleProps {
     style: StyleType;
     title?: string; // Optional Title for the Section
     subtitle?: string; // Optional Subtitle
-    experiences?: { company: string; role: string; period: string }[]; // Optional custom experiences
-    onUpdate: (updatedData: any) => void; // onUpdate for handling updates
+    experiences?: Experience[]; // Optional custom experiences
+    onUpdate: (updatedData: Partial<StyleProps>) => void; // Specific type for updates
 }
 
 // Default Experience Data
@@ -123,11 +129,11 @@ const styleMap: { [key in StyleType]: React.FC<{ experiences: { company: string;
 };
 
 // Experience Section Component
-export function ExperienceSection({ style, title = "My Experience", subtitle = "Past roles and responsibilities", experiences = defaultExperiences, onUpdate }: StyleProps) {
+export function ExperienceSection({ style, title = "My Experience", subtitle = "", experiences = defaultExperiences, onUpdate }: StyleProps) {
     const RenderStyle = styleMap[style] || (() => <p>Style not found</p>);
 
     return (
-        <section className="container mx-auto px-4 py-6">
+        <section className="container mx-auto px-4 py-6 text-black">
             <h2 className="text-3xl font-bold text-center mb-12 text-white">{title}</h2>
             {subtitle && <p className="text-center text-gray-400 mb-8">{subtitle}</p>}
             <RenderStyle experiences={experiences} />
