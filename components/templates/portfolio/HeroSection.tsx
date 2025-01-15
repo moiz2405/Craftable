@@ -15,8 +15,8 @@ interface HeroProps {
     pfpImage?: string;
     pfpShape?: "circle" | "square";  // Prop to define the shape of the profile picture
     imageUrl?: string;
-    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector\
-    onUpdate: (updatedData: any) => void;
+    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector
+    onUpdate: (updatedData: HeroProps) => void;  // Defined the correct type for updatedData
 }
 
 export function HeroSection({
