@@ -3,28 +3,31 @@ import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Layers, Smartphone, Globe } from "lucide-react";
 import Link from "next/link";
 
-interface ProjectProps {
+interface ProjectUpdateData {
     title: string;
     description: string;
-    icon: JSX.Element;
     github: string;
     demo: string;
     tags: string[];
 }
 
 interface ProjectsSectionProps {
-    style: "style1" | "style2" | "style3" | "style4" | "style5"; // Style prop
-    projects?: ProjectProps[]; // Optional array of projects (can be passed dynamically)
-    title?: string;  // Optional title
-    subtitle?: string;  // Optional subtitle
-    buttonText1?: string;  // Optional button text 1
-    buttonLink1?: string;  // Optional button link 1
-    onUpdate: (updatedData: any) => void;
+    style: "style1" | "style2" | "style3" | "style4" | "style5";
+    title?: string;
+    subtitle?: string;
+    buttonText1?: string;
+    buttonLink1?: string;
+    onUpdate: (updatedData: ProjectUpdateData) => void;
 }
 
 export function ProjectsSection({
-    style = "style1",  // Default style
-    projects = [
+    style = "style1", // Default style
+    title = "Projects", // Default title
+    subtitle = "Here are some of my projects", // Default subtitle
+    buttonText1 = "View All", // Default button text
+    buttonLink1 = "#", // Default button link
+}: ProjectsSectionProps) {
+    const projects = [
         {
             title: "E-commerce Platform",
             description: "A full-stack online shopping platform with real-time inventory management",
@@ -49,12 +52,7 @@ export function ProjectsSection({
             demo: "#",
             tags: ["Next.js", "Tailwind CSS"],
         },
-    ], // Default projects list
-    title = "Projects",  // Default title
-    subtitle = "Here are some of my projects",  // Default subtitle
-    buttonText1 = "View All",  // Default button text
-    buttonLink1 = "#",  // Default button link
-}: ProjectsSectionProps) {
+    ];
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -66,7 +64,7 @@ export function ProjectsSection({
         visible: { y: 0, opacity: 1 },
     };
 
-    const renderProjectCard = (project: ProjectProps) => (
+    const renderProjectCard = (project: { title: string; description: string; github: string; demo: string; tags: string[]; icon: JSX.Element }) => (
         <motion.div key={project.title} variants={itemVariants}>
             <div className="bg-gray-800 border-gray-700 text-white flex flex-col p-4 rounded-lg">
                 <div className="flex items-center gap-2 text-purple-400">

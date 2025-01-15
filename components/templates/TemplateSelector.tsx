@@ -9,11 +9,18 @@ import clsx from 'clsx';
 import { StyleType } from '../../types';
 import { useRouter } from 'next/navigation'; // Import Next.js router
 import { TEMPLATES } from '../../constants/Templates';
+
+interface TemplateComponentProps {
+    style: string;
+    onStyleChange: () => void;
+}
+
+
 interface TemplateCardProps {
     style: string;
     onSelect: () => void;
     isSelected: boolean;
-    components: { component: React.ComponentType<any>; title: string }[]; // Adjusting the type here
+    components: { component: React.ComponentType<TemplateComponentProps>; title: string }[];
 }
 
 function TemplateCard({

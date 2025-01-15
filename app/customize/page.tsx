@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import { useState } from 'react';
 import { TEMPLATES } from '../../constants/Templates';
 import { HeroSection } from "@/components/templates/portfolio/HeroSection";
@@ -17,26 +18,25 @@ const CustomizePageContent = () => {
         (template) => template.label === selectedTemplateLabel
     );
 
+    const initialCustomizedData = selectedTemplate?.components.reduce((acc, { component: Component }) => {
+        acc[Component.name] = {}; // Initialize each component with an empty object
+        return acc;
+    }, {} as Record<string, Record<string, unknown>>) || {};
+
+
+    const [customizedData, setCustomizedData] = useState(initialCustomizedData);
+
     if (!selectedTemplate) {
         return <p className="text-red-500">Invalid template selected.</p>;
     }
 
-    const [customizedData, setCustomizedData] = useState(
-        selectedTemplate.components.reduce((acc, { component: Component }) => {
-            acc[Component.name] = {}; // Initialize each component with an empty object
-            return acc;
-        }, {} as Record<string, any>)
-    );
-
-    // Handle dynamic updates for components
-    const handleComponentUpdate = (componentName: string, updatedData: any) => {
+    const handleComponentUpdate = (componentName: string, updatedData: object) => {
         setCustomizedData((prevData) => ({
             ...prevData,
-            [componentName]: updatedData, // Update the data for the specific component
+            [componentName]: updatedData,
         }));
     };
 
-    // Handle user input for HeroSection (updated for all fields)
     const handleHeroSectionInputChange = (field: string, value: string) => {
         setCustomizedData((prevData) => ({
             ...prevData,
@@ -54,7 +54,7 @@ const CustomizePageContent = () => {
             </span>
 
             <div className="grid grid-cols-12 gap-8">
-                {/* Left Column: Template Preview */}
+                {/* Template Preview */}
                 <div className="col-span-12 lg:col-span-8">
                     <div className="space-y-6">
                         {selectedTemplate.components.length > 0 ? (
@@ -77,8 +77,8 @@ const CustomizePageContent = () => {
                                     ) : Component === SkillsSection ? (
                                         <SkillsSection
                                             style={selectedStyle}
-                                            skills={customizedData.SkillsSection.skills || []}
-                                            onUpdate={(updatedData) => handleComponentUpdate('SkillsSection', updatedData)}
+
+
                                         />
                                     ) : Component === ProjectsSection ? (
                                         <ProjectsSection
@@ -89,12 +89,11 @@ const CustomizePageContent = () => {
                                     ) : Component === ExperienceSection ? (
                                         <ExperienceSection
                                             style={selectedStyle}
-                                            experiences={customizedData.ExperienceSection.experience || []}
+
                                             onUpdate={(updatedData) => handleComponentUpdate('ExperienceSection', updatedData)}
                                         />
                                     ) : null}
                                 </div>
-
                             ))
                         ) : (
                             <p className="text-gray-500">No components available for this template.</p>
@@ -102,7 +101,7 @@ const CustomizePageContent = () => {
                     </div>
                 </div>
 
-                {/* Right Column: Editor Panel */}
+                {/* Editor Panel */}
                 <div className="col-span-12 lg:col-span-4 p-6 border rounded-xl shadow-lg bg-white text-black">
                     <div className="space-y-6">
                         <div>

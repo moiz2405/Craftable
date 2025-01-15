@@ -8,11 +8,11 @@ interface Skill {
 
 interface SkillsSectionProps {
     style: "style1" | "style2" | "style3" | "style4" | "style5";
-    skills: Skill[];
-    onUpdate: (updatedData: any) => void;
+    skills?: Skill[];  // Make skills optional
+    onUpdate: (updatedData: unknown) => void;
 }
 
-const skills: Skill[] = [
+const defaultSkills: Skill[] = [
     { name: 'JavaScript', icon: <Code className="h-6 w-6" /> },
     { name: 'React', icon: <Globe className="h-6 w-6" /> },
     { name: 'Node.js', icon: <Server className="h-6 w-6" /> },
@@ -21,7 +21,7 @@ const skills: Skill[] = [
     { name: 'HTML', icon: <Globe className="h-6 w-6" /> },
 ];
 
-export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
+export function SkillsSection({ style, skills = defaultSkills, onUpdate }: SkillsSectionProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -33,6 +33,11 @@ export function SkillsSection({ style, skills, onUpdate }: SkillsSectionProps) {
     };
 
     const renderContent = () => {
+        if (!Array.isArray(skills)) {
+            console.error("Invalid 'skills' prop: Expected an array.");
+            return null;
+        }
+
         switch (style) {
             case 'style1':
                 return (
