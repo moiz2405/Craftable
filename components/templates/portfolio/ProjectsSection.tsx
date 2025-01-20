@@ -1,31 +1,31 @@
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Layers, Smartphone, Globe } from "lucide-react";
-import Link from "next/link";
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { Github, ExternalLink, Layers, Smartphone, Globe } from "lucide-react"
+import Link from "next/link"
 
 interface ProjectUpdateData {
-    title: string;
-    description: string;
-    github: string;
-    demo: string;
-    tags: string[];
+    title: string
+    description: string
+    github: string
+    demo: string
+    tags: string[]
 }
 
 interface ProjectsSectionProps {
-    style: "style1" | "style2" | "style3" | "style4" | "style5";
-    title?: string;
-    subtitle?: string;
-    buttonText1?: string;
-    buttonLink1?: string;
-    onUpdate: (updatedData: ProjectUpdateData) => void;
+    style: "style1" | "style2" | "style3" | "style4" | "style5"
+    title?: string
+    subtitle?: string
+    buttonText1?: string
+    buttonLink1?: string
+    onUpdate: (updatedData: ProjectUpdateData) => void
 }
 
 export function ProjectsSection({
-    style = "style1", // Default style
-    title = "Projects", // Default title
-    subtitle = "Here are some of my projects", // Default subtitle
-    buttonText1 = "View All", // Default button text
-    buttonLink1 = "#", // Default button link
+    style = "style1",
+    title = "Projects",
+    subtitle = "Here are some of my projects",
+    buttonText1 = "View All",
+    buttonLink1 = "#",
 }: ProjectsSectionProps) {
     const projects = [
         {
