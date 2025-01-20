@@ -1,37 +1,36 @@
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Github, Linkedin } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
 
 interface HeroProps {
-    title: string;
-    subtitle: string;
-    buttonText1: string;
-    buttonText2?: string;
-    buttonLink1: string;
-    buttonLink2?: string;
-    socialLinks?: { github?: string; linkedin?: string };
-    pfpImage?: string;
-    pfpShape?: "circle" | "square";  // Prop to define the shape of the profile picture
-    imageUrl?: string;
-    style: "style1" | "style2" | "style3" | "style4" | "style5";  // Style selector
-    onUpdate: (updatedData: HeroProps) => void;  // Defined the correct type for updatedData
+  title: string
+  subtitle: string
+  buttonText1: string
+  buttonText2?: string
+  buttonLink1: string
+  buttonLink2?: string
+  socialLinks?: { github?: string; linkedin?: string }
+  pfpImage?: string
+  pfpShape?: "circle" | "square"
+  imageUrl?: string
+  style: "style1" | "style2" | "style3" | "style4" | "style5"
+  onUpdate: (updatedData: HeroProps) => void
 }
 
 export function HeroSection({
-    title = "Welcome to My Portfolio",
-    subtitle = "Showcasing My Work and Projects",
-    buttonText1 = "Get Started",
-    buttonText2 = "Learn More",
-    buttonLink1 = "#",
-    buttonLink2 = "#",
-    socialLinks = { github: "#", linkedin: "#" },
-    pfpImage = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    pfpShape = "circle", // Default shape is circle
-    imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    style = "style1",
-
+  title = "Welcome to My Portfolio",
+  subtitle = "Showcasing My Work and Projects",
+  buttonText1 = "Get Started",
+  buttonText2 = "Learn More",
+  buttonLink1 = "#",
+  buttonLink2 = "#",
+  socialLinks = { github: "#", linkedin: "#" },
+  pfpImage = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  pfpShape = "circle",
+  imageUrl = "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  style = "style1",
 }: HeroProps) {
 
     const renderSocialLinks = () => (
