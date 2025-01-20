@@ -98,7 +98,7 @@ export default function CustomizePage() {
   return (
     <Suspense fallback={<div>Loading customization options...</div>}>
       <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black text-white">
-        <div className="container mx-auto px-4 py-8">
+        <div className="max-w-[1600px] mx-auto px-4 py-8">
           <h1 className="text-3xl font-bold mb-6">Customize Your {template} Template</h1>
 
           <div className="mb-8">
@@ -115,29 +115,33 @@ export default function CustomizePage() {
             </Select>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            <div className="lg:w-3/4 space-y-8">
               <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <HeroSection {...heroProps} style={style} onUpdate={() => {}} />
+                <HeroSection {...heroProps} style={style} onUpdate={() => { }} />
               </div>
               <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <ProjectsSection {...projectsProps} style={style} onUpdate={() => {}} />
+                <ProjectsSection {...projectsProps} style={style} onUpdate={() => { }} />
               </div>
               <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <SkillsSection {...skillsProps} style={style} onUpdate={() => {}} />
+                <SkillsSection {...skillsProps} style={style} onUpdate={() => { }} />
               </div>
               <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <ExperienceSection {...experienceProps} style={style} onUpdate={() => {}} />
+                <ExperienceSection {...experienceProps} style={style} onUpdate={() => { }} />
               </div>
             </div>
 
-            <div className="lg:col-span-1">
-              <div className="bg-purple-800 rounded-lg shadow-lg p-6">
-                {activeSection === "hero" && <CustomizeHero props={heroProps} onUpdate={setHeroProps} />}
+            <div className="lg:w-1/4">
+              <div className="bg-purple-800 rounded-lg shadow-lg p-6 sticky top-4">
+                {activeSection === "hero" && (
+                  <CustomizeHero props={heroProps} onUpdate={setHeroProps} />
+                )}
                 {activeSection === "projects" && (
                   <CustomizeProjects props={projectsProps} onUpdate={setProjectsProps} />
                 )}
-                {activeSection === "skills" && <CustomizeSkills props={skillsProps} onUpdate={setSkillsProps} />}
+                {activeSection === "skills" && (
+                  <CustomizeSkills props={skillsProps} onUpdate={setSkillsProps} />
+                )}
                 {activeSection === "experience" && (
                   <CustomizeExperience props={experienceProps} onUpdate={setExperienceProps} />
                 )}
@@ -153,4 +157,3 @@ export default function CustomizePage() {
     </Suspense>
   )
 }
-
