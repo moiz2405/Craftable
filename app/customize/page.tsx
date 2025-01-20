@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { Suspense } from "react"
-import { Button } from "@/components/ui/button"
-import { HeroSection } from "@/components/templates/portfolio/HeroSection"
-import { ProjectsSection } from "@/components/templates/portfolio/ProjectsSection"
-import { SkillsSection } from "@/components/templates/portfolio/SkillsSection"
-import { ExperienceSection } from "@/components/templates/portfolio/ExperienceSection"
-import { CustomizeHero } from "@/components/customize/CustomizeHero"
-import { CustomizeProjects } from "@/components/customize/CustomizeProjects"
-import { CustomizeSkills } from "@/components/customize/CustomizeSkills"
-import { CustomizeExperience } from "@/components/customize/CustomizeExperience"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import type { StyleType } from "@/types"
+import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { Button } from "@/components/ui/button";
+import { HeroSection } from "@/components/templates/portfolio/HeroSection";
+import { ProjectsSection } from "@/components/templates/portfolio/ProjectsSection";
+import { SkillsSection } from "@/components/templates/portfolio/SkillsSection";
+import { ExperienceSection } from "@/components/templates/portfolio/ExperienceSection";
+import { CustomizeHero } from "@/components/customize/CustomizeHero";
+import { CustomizeProjects } from "@/components/customize/CustomizeProjects";
+import { CustomizeSkills } from "@/components/customize/CustomizeSkills";
+import { CustomizeExperience } from "@/components/customize/CustomizeExperience";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import type { StyleType } from "@/types";
 
-export default function CustomizePage() {
-  const searchParams = useSearchParams()
-  const [template, setTemplate] = useState(searchParams.get("template") || "")
-  const [style, setStyle] = useState<StyleType>((searchParams.get("style") as StyleType) || "style1")
-  const [activeSection, setActiveSection] = useState("hero")
+function CustomizePageContent() {
+  const searchParams = useSearchParams();
+  const [template, setTemplate] = useState(searchParams.get("template") || "");
+  const [style, setStyle] = useState<StyleType>((searchParams.get("style") as StyleType) || "style1");
+  const [activeSection, setActiveSection] = useState("hero");
 
   const [heroProps, setHeroProps] = useState({
     title: "Welcome to My Portfolio",
@@ -34,7 +34,7 @@ export default function CustomizePage() {
     pfpShape: "circle" as "circle" | "square",
     imageUrl:
       "https://images.pexels.com/photos/4467683/pexels-photo-4467683.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  })
+  });
 
   const [projectsProps, setProjectsProps] = useState({
     title: "Projects",
@@ -67,7 +67,7 @@ export default function CustomizePage() {
         tags: ["Next.js", "Tailwind CSS"],
       },
     ],
-  })
+  });
 
   const [skillsProps, setSkillsProps] = useState({
     skills: [
@@ -78,7 +78,7 @@ export default function CustomizePage() {
       { name: "CSS", icon: "Laptop" },
       { name: "HTML", icon: "Globe" },
     ],
-  })
+  });
 
   const [experienceProps, setExperienceProps] = useState({
     title: "My Experience",
@@ -88,72 +88,57 @@ export default function CustomizePage() {
       { company: "Web Solutions Inc.", role: "Full Stack Developer", period: "2018 - 2020" },
       { company: "Digital Creations", role: "Junior Developer", period: "2016 - 2018" },
     ],
-  })
+  });
 
   const handleSave = () => {
-    // Implement save logic here
-    console.log("Saving customized template...")
-  }
+    console.log("Saving customized template...");
+  };
 
   return (
-    <Suspense fallback={<div>Loading customization options...</div>}>
-      <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black text-white">
-        <div className="max-w-[1600px] mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold mb-6">Customize Your {template} Template</h1>
-
-          <div className="mb-8">
-            <Select value={activeSection} onValueChange={setActiveSection}>
-              <SelectTrigger className="w-full md:w-[300px] bg-purple-800 text-white border-purple-600">
-                <SelectValue placeholder="Select section to edit" />
-              </SelectTrigger>
-              <SelectContent className="bg-purple-800 text-white border-purple-600">
-                <SelectItem value="hero">Hero Section</SelectItem>
-                <SelectItem value="projects">Projects Section</SelectItem>
-                <SelectItem value="skills">Skills Section</SelectItem>
-                <SelectItem value="experience">Experience Section</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-8">
-            <div className="lg:w-3/4 space-y-8">
-              <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <HeroSection {...heroProps} style={style} onUpdate={() => { }} />
-              </div>
-              <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <ProjectsSection {...projectsProps} style={style} onUpdate={() => { }} />
-              </div>
-              <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <SkillsSection {...skillsProps} style={style} onUpdate={() => { }} />
-              </div>
-              <div className="bg-white text-black rounded-lg shadow-lg overflow-hidden">
-                <ExperienceSection {...experienceProps} style={style} onUpdate={() => { }} />
-              </div>
-            </div>
-
-            <div className="lg:w-1/4">
-              <div className="bg-purple-800 rounded-lg shadow-lg p-6 sticky top-4">
-                {activeSection === "hero" && (
-                  <CustomizeHero props={heroProps} onUpdate={setHeroProps} />
-                )}
-                {activeSection === "projects" && (
-                  <CustomizeProjects props={projectsProps} onUpdate={setProjectsProps} />
-                )}
-                {activeSection === "skills" && (
-                  <CustomizeSkills props={skillsProps} onUpdate={setSkillsProps} />
-                )}
-                {activeSection === "experience" && (
-                  <CustomizeExperience props={experienceProps} onUpdate={setExperienceProps} />
-                )}
-              </div>
-            </div>
-          </div>
-
-          <Button onClick={handleSave} className="mt-8 w-full md:w-auto bg-purple-600 hover:bg-purple-700">
-            Save and Continue
-          </Button>
+    <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black text-white">
+      <div className="max-w-[1600px] mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold mb-6">Customize Your {template} Template</h1>
+        <div className="mb-8">
+          <Select value={activeSection} onValueChange={setActiveSection}>
+            <SelectTrigger className="w-full md:w-[300px] bg-purple-800 text-white border-purple-600">
+              <SelectValue placeholder="Select section to edit" />
+            </SelectTrigger>
+            <SelectContent className="bg-purple-800 text-white border-purple-600">
+              <SelectItem value="hero">Hero Section</SelectItem>
+              <SelectItem value="projects">Projects Section</SelectItem>
+              <SelectItem value="skills">Skills Section</SelectItem>
+              <SelectItem value="experience">Experience Section</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-3/4 space-y-8">
+            <HeroSection {...heroProps} style={style} onUpdate={() => { }} />
+            <ProjectsSection {...projectsProps} style={style} onUpdate={() => { }} />
+            <SkillsSection {...skillsProps} style={style} onUpdate={() => { }} />
+            <ExperienceSection {...experienceProps} style={style} onUpdate={() => { }} />
+          </div>
+          <div className="lg:w-1/4">
+            <div className="bg-purple-800 rounded-lg shadow-lg p-6 sticky top-4">
+              {activeSection === "hero" && <CustomizeHero props={heroProps} onUpdate={setHeroProps} />}
+              {activeSection === "projects" && <CustomizeProjects props={projectsProps} onUpdate={setProjectsProps} />}
+              {activeSection === "skills" && <CustomizeSkills props={skillsProps} onUpdate={setSkillsProps} />}
+              {activeSection === "experience" && <CustomizeExperience props={experienceProps} onUpdate={setExperienceProps} />}
+            </div>
+          </div>
+        </div>
+        <Button onClick={handleSave} className="mt-8 w-full md:w-auto bg-purple-600 hover:bg-purple-700">
+          Save and Continue
+        </Button>
       </div>
+    </div>
+  );
+}
+
+export default function CustomizePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CustomizePageContent />
     </Suspense>
-  )
+  );
 }
