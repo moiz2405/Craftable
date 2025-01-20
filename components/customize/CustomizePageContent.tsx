@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { TEMPLATES } from '../../constants/Templates';
-import { HeroSection } from "../../components/templates/portfolio/HeroSection";
-import { SkillsSection } from "../../components/templates/portfolio/SkillsSection";
-import { ProjectsSection } from "../../components/templates/portfolio/ProjectsSection";
-import { ExperienceSection } from "../../components/templates/portfolio/ExperienceSection";
+import { HeroSection } from "../templates/portfolio/HeroSection";
+import { SkillsSection } from "../templates/portfolio/SkillsSection";
+import { ProjectsSection } from "../templates/portfolio/ProjectsSection";
+import { ExperienceSection } from "../templates/portfolio/ExperienceSection";
 
 const CustomizePageContent = () => {
     const searchParams = useSearchParams();
