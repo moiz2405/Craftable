@@ -78,7 +78,7 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
       <div className="grid gap-4">
         <div className="grid gap-2">
           <Label htmlFor="title">Section Title</Label>
-          <Input id="title" name="title" value={props.title} onChange={handleChange} className="bg-gray-800" />
+          <Input id="title" name="title" value={props.title} onChange={handleChange} className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md" />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="subtitle">Section Subtitle</Label>
