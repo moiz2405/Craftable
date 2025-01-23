@@ -75,20 +75,7 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
   return (
     <div className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-white mb-6">Customize Projects Section</h2>
-      <div className="grid gap-4">
-        {["title", "subtitle", "buttonText1", "buttonLink1"].map((field) => (
-          <div key={field} className="grid gap-2">
-            <Label htmlFor={field}>{field.replace(/([A-Z])/g, " $1")}</Label>
-            <Input
-              id={field}
-              name={field}
-              value={(props as any)[field]}
-              onChange={handleChange}
-              className="bg-gray-800"
-            />
-          </div>
-        ))}
-      </div>
+
 
       <div className="space-y-6">
         {props.projects.map((project, index) => (
@@ -97,7 +84,7 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
               placeholder="Project Title"
               value={project.title}
               onChange={(e) => handleProjectChange(index, "title", e.target.value)}
-              className="bg-gray-800"
+              className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
             <Textarea
               placeholder="Project Description"
@@ -119,13 +106,13 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
               placeholder="GitHub Link"
               value={project.github}
               onChange={(e) => handleProjectChange(index, "github", e.target.value)}
-              className="bg-gray-800"
+              className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
             <Input
               placeholder="Demo Link"
               value={project.demo}
               onChange={(e) => handleProjectChange(index, "demo", e.target.value)}
-              className="bg-gray-800"
+              className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
             <div>
               <Label>Tags</Label>
@@ -151,6 +138,7 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
                       prev.map((tag, i) => (i === index ? e.target.value : tag))
                     )
                   }
+                  className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                 />
                 <Button onClick={() => handleAddTag(index)}>Add</Button>
               </div>
@@ -160,7 +148,7 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
             </Button>
           </div>
         ))}
-        <Button onClick={addProject}>Add New Project</Button>
+        <Button className="bg-purple-500" onClick={addProject}>Add New Project</Button>
       </div>
     </div>
   );
