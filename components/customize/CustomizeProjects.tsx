@@ -58,8 +58,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
       title: "New Project",
       description: "Project description",
       icon: "Globe",
-      github: "#",
-      demo: "#",
+      github: "",
+      demo: "",
       tags: [],
     };
     onUpdate({ ...props, projects: [...props.projects, newProject] });
@@ -76,23 +76,36 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
     <div className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-white mb-6">Customize Projects Section</h2>
 
-
       <div className="space-y-6">
         {props.projects.map((project, index) => (
           <div key={index} className="border rounded-md p-4 space-y-4">
+            <Label htmlFor="title" className="text-gray-300 ">
+              Project Title
+            </Label>
             <Input
               placeholder="Project Title"
               value={project.title}
               onChange={(e) => handleProjectChange(index, "title", e.target.value)}
               className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
+
+            <Label htmlFor="description" className="text-gray-300">
+              Project Description
+            </Label>
             <Textarea
               placeholder="Project Description"
               value={project.description}
               onChange={(e) => handleProjectChange(index, "description", e.target.value)}
               className="bg-gray-800"
             />
-            <Select value={project.icon} onValueChange={(value) => handleProjectChange(index, "icon", value)}>
+
+            <Label htmlFor="icon" className="text-gray-300">
+              Select Project Icon
+            </Label>
+            <Select
+              value={project.icon}
+              onValueChange={(value) => handleProjectChange(index, "icon", value)}
+            >
               <SelectTrigger className="bg-gray-800">
                 <SelectValue placeholder="Select an icon" />
               </SelectTrigger>
@@ -102,23 +115,35 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
                 <SelectItem value="Globe">Globe</SelectItem>
               </SelectContent>
             </Select>
+
+            <Label htmlFor="github" className="text-gray-300">
+              GitHub Link
+            </Label>
             <Input
               placeholder="GitHub Link"
               value={project.github}
               onChange={(e) => handleProjectChange(index, "github", e.target.value)}
               className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
+
+            <Label htmlFor="demo" className="text-gray-300">
+              Demo Link
+            </Label>
             <Input
               placeholder="Demo Link"
               value={project.demo}
               onChange={(e) => handleProjectChange(index, "demo", e.target.value)}
               className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
             />
+
             <div>
               <Label>Tags</Label>
               <div className="flex flex-wrap gap-2 mt-2">
                 {project.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="bg-purple-600 text-white px-2 py-1 rounded-full text-sm">
+                  <span
+                    key={tagIndex}
+                    className="bg-purple-600 text-white px-2 py-1 rounded-full text-sm"
+                  >
                     {tag}
                     <button
                       className="ml-2 text-xs"
@@ -143,12 +168,15 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
                 <Button onClick={() => handleAddTag(index)}>Add</Button>
               </div>
             </div>
+
             <Button variant="destructive" onClick={() => removeProject(index)}>
               Remove Project
             </Button>
           </div>
         ))}
-        <Button className="bg-purple-500" onClick={addProject}>Add New Project</Button>
+        <Button className="bg-purple-500" onClick={addProject}>
+          Add New Project
+        </Button>
       </div>
     </div>
   );
