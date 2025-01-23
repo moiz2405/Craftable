@@ -94,10 +94,7 @@ export function ProjectsSection({
         >
             <div className="col-span-full">
                 <h2 className="text-2xl font-bold">{title}</h2>
-                <p className="text-lg text-gray-300">{subtitle}</p>
-                <Link href={buttonLink1}>
-                    <Button className="mt-4">{buttonText1}</Button>
-                </Link>
+        
             </div>
             {projects.map(renderProjectCard)}
         </motion.div>
