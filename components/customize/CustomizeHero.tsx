@@ -14,6 +14,7 @@ interface CustomizeHeroProps {
 }
 
 export function CustomizeHero({ props, onUpdate }: CustomizeHeroProps) {
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
