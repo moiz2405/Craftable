@@ -59,6 +59,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
                             placeholder="Period"
                             value={experience.period}
                             onChange={(e) => handleExperienceChange(index, "period", e.target.value)}
+                            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                         />
                         <Button onClick={() => removeExperience(index)} variant="destructive">
                             Remove Experience
