@@ -32,7 +32,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
             <div className="grid gap-4">
                 <div className="grid gap-2">
                     <Label htmlFor="title">Title</Label>
-                    <Input id="title" name="title" value={props.title} onChange={handleChange} />
+                    <Input className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md" id="title" name="title" value={props.title} onChange={handleChange} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="subtitle">Subtitle</Label>
