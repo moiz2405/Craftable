@@ -53,6 +53,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
                             placeholder="Role"
                             value={experience.role}
                             onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
+                            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                         />
                         <Input
                             placeholder="Period"
