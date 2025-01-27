@@ -16,7 +16,7 @@ export const TEMPLATES = [
             { component: ExperienceSection, title: '' },
         ],
     },
-    { label: 'E-commerce Site', status: 'Testing', components: [] },
+    { label: 'E-commerce Site', status: 'Upcoming', components: [] },
     { label: 'Business Site', status: 'Upcoming', components: [] },
     { label: 'Blog Site', status: 'Upcoming', components: [] },
     { label: 'Landing Page', status: 'Upcoming', components: [] },

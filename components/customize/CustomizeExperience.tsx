@@ -28,15 +28,16 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-md">
             <div className="grid gap-4">
                 <div className="grid gap-2">
                     <Label htmlFor="title">Title</Label>
-                    <Input id="title" name="title" value={props.title} onChange={handleChange} />
+                    <Input className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md" id="title" name="title" value={props.title} onChange={handleChange} />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="subtitle">Subtitle</Label>
-                    <Input id="subtitle" name="subtitle" value={props.subtitle} onChange={handleChange} />
+                    <Input id="subtitle" name="subtitle" value={props.subtitle} onChange={handleChange}
+                        className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md" />
                 </div>
             </div>
             <div className="space-y-6">
@@ -46,16 +47,19 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
                             placeholder="Company"
                             value={experience.company}
                             onChange={(e) => handleExperienceChange(index, "company", e.target.value)}
+                            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                         />
                         <Input
                             placeholder="Role"
                             value={experience.role}
                             onChange={(e) => handleExperienceChange(index, "role", e.target.value)}
+                            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                         />
                         <Input
                             placeholder="Period"
                             value={experience.period}
                             onChange={(e) => handleExperienceChange(index, "period", e.target.value)}
+                            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
                         />
                         <Button onClick={() => removeExperience(index)} variant="destructive">
                             Remove Experience
@@ -63,7 +67,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
                     </div>
                 ))}
             </div>
-            <Button onClick={addExperience}>Add Experience</Button>
+            <Button className="bg-purple-500 font-white" onClick={addExperience}>Add Experience</Button>
         </div>
     );
 }
