@@ -28,7 +28,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-md">
             <div className="grid gap-4">
                 <div className="grid gap-2">
                     <Label htmlFor="title">Title</Label>
