@@ -67,7 +67,7 @@ export function CustomizeExperience({ props, onUpdate }: CustomizeExperienceProp
                     </div>
                 ))}
             </div>
-            <Button onClick={addExperience}>Add Experience</Button>
+            <Button className="bg-purple-500 font-white" onClick={addExperience}>Add Experience</Button>
         </div>
     );
 }
