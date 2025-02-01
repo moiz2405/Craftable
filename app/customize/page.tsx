@@ -98,6 +98,11 @@ function CustomizePageContent() {
     <div className="min-h-screen bg-gradient-to-b from-purple-900 to-black text-white">
       <div className="max-w-[1600px] mx-auto px-4 py-8">
         <h1 className="text-3xl font-bold mb-6">Customize Your {template} Template</h1>
+
+        <Button onClick={handleSave} className="mb-6 w-full md:w-auto bg-purple-600 hover:bg-purple-700">
+          Save and Continue
+        </Button>
+
         <div className="mb-8">
           <Select value={activeSection} onValueChange={setActiveSection}>
             <SelectTrigger className="w-full md:w-[300px] bg-purple-800 text-white border-purple-600">
@@ -111,6 +116,7 @@ function CustomizePageContent() {
             </SelectContent>
           </Select>
         </div>
+
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-3/4 space-y-8">
             <HeroSection {...heroProps} style={style} onUpdate={() => { }} />
@@ -127,12 +133,10 @@ function CustomizePageContent() {
             </div>
           </div>
         </div>
-        <Button onClick={handleSave} className="mt-8 w-full md:w-auto bg-purple-600 hover:bg-purple-700">
-          Save and Continue
-        </Button>
       </div>
     </div>
   );
+
 }
 
 export default function CustomizePage() {
