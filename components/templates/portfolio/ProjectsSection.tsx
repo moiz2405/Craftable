@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Layers, Smartphone, Globe } from "lucide-react"
 import Link from "next/link"
+import type React from "react" // Added import for React
 
 interface Project {
     title: string
@@ -13,16 +14,15 @@ interface Project {
 }
 
 interface ProjectsSectionProps {
-    style: "style1" | "style2" | "style3" | "style4" | "style5"
+    style?: "style1" | "style2" | "style3" | "style4" | "style5"
     title: string
     subtitle: string
     buttonText1: string
     buttonLink1: string
     projects: Project[]
-    onUpdate: (updatedData: ProjectsSectionProps) => void
 }
 
-const iconMap: { [key: string]: JSX.Element } = {
+const iconMap: { [key: string]: React.ReactNode } = {
     Layers: <Layers className="h-6 w-6" />,
     Smartphone: <Smartphone className="h-6 w-6" />,
     Globe: <Globe className="h-6 w-6" />,
@@ -35,7 +35,6 @@ export function ProjectsSection({
     buttonText1 = "View All",
     buttonLink1 = "#",
     projects = [],
-    onUpdate,
 }: ProjectsSectionProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -49,12 +48,12 @@ export function ProjectsSection({
 
     const renderProjectCard = (project: Project) => (
         <motion.div key={project.title} variants={itemVariants}>
-            <div className="bg-gray-800 border-gray-700 text-white flex flex-col p-4 rounded-lg">
+            <div className="bg-gray-800 border-gray-700 text-white flex flex-col p-4 rounded-lg h-full">
                 <div className="flex items-center gap-2 text-purple-400">
                     {iconMap[project.icon] || <Globe className="h-6 w-6" />}
                     <h3 className="text-xl font-semibold">{project.title}</h3>
                 </div>
-                <p className="text-gray-300 mt-2">{project.description}</p>
+                <p className="text-gray-300 mt-2 flex-grow">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
                     {project.tags.map((tag, index) => (
                         <span key={index} className="px-2 py-1 bg-purple-600 text-xs rounded-full">
@@ -62,8 +61,8 @@ export function ProjectsSection({
                         </span>
                     ))}
                 </div>
-                <div className="mt-auto">
-                    <div className="flex gap-4">
+                <div className="mt-4 flex gap-4">
+                    {project.github && (
                         <Button
                             asChild
                             size="sm"
@@ -74,30 +73,36 @@ export function ProjectsSection({
                                 <Github className="mr-2 h-4 w-4" /> GitHub
                             </Link>
                         </Button>
+                    )}
+                    {project.demo && (
                         <Button asChild size="sm" className="bg-purple-600 hover:bg-purple-700 text-white">
                             <Link href={project.demo}>
                                 <ExternalLink className="mr-2 h-4 w-4" /> Demo
                             </Link>
                         </Button>
-                    </div>
+                    )}
                 </div>
             </div>
         </motion.div>
     )
 
     return (
-        <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${style}`}
-        >
-            <div className="col-span-full">
-                <h2 className="text-2xl font-bold">{title}</h2>
-        
+        <section className={`py-16 ${style}`}>
+            <div className="container mx-auto px-4">
+                <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-12">
+                    <div className="text-center">
+                        <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
+                        <p className="text-xl text-gray-400 mb-8">{subtitle}</p>
+                        {buttonText1 && buttonLink1 && (
+                            <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
+                                <Link href={buttonLink1}>{buttonText1}</Link>
+                            </Button>
+                        )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">{projects.map(renderProjectCard)}</div>
+                </motion.div>
             </div>
-            {projects.map(renderProjectCard)}
-        </motion.div>
+        </section>
     )
 }
 
