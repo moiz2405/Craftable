@@ -76,8 +76,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
     <div className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-md">
       <h2 className="text-3xl font-semibold text-white mb-6">Customize Projects Section</h2>
 
-      <div className="space-y-4">
-        <div>
+      {/* <div className="space-y-4">
+        {/* <div>
           <Label htmlFor="title" className="text-gray-300">
             Section Title
           </Label>
@@ -88,8 +88,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
             onChange={handleChange}
             className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Label htmlFor="subtitle" className="text-gray-300">
             Section Subtitle
           </Label>
@@ -100,8 +100,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
             onChange={handleChange}
             className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Label htmlFor="buttonText1" className="text-gray-300">
             Button Text
           </Label>
@@ -112,8 +112,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
             onChange={handleChange}
             className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Label htmlFor="buttonLink1" className="text-gray-300">
             Button Link
           </Label>
@@ -124,8 +124,8 @@ export function CustomizeProjects({ props, onUpdate }: CustomizeProjectsProps) {
             onChange={handleChange}
             className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
           />
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */} 
 
       <div className="space-y-6">
         {props.projects.map((project, index) => (
