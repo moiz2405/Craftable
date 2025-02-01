@@ -172,7 +172,7 @@ export function SkillsSection({ style, skills = defaultSkills, onUpdate, isLoadi
     return (
         <ErrorBoundary fallback={<div className="text-white text-center">Something went wrong. Please try again.</div>}>
             <section className="container mx-auto px-4 py-6">
-                <h2 className="text-3xl font-bold text-center mb-12 text-white">My Skills</h2>
+                <h2 className="text-3xl font-bold  mb-12 text-white">My Skills</h2>
                 {renderContent()}
             </section>
         </ErrorBoundary>
