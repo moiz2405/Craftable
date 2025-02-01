@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FaGithub, FaLinkedin } from "react-icons/fa"; // Assuming you're using react-icons for the icons
 
 interface CustomizeHeroProps {
   props: any;
@@ -114,30 +115,46 @@ export function CustomizeHero({ props, onUpdate }: CustomizeHeroProps) {
             className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
           />
         </div>
-        <div>
-          <Label htmlFor="socialLinks.github" className="text-gray-300">
-            GitHub Link
-          </Label>
-          <Input
-            id="socialLinks.github"
-            name="socialLinks.github"
-            value={props.socialLinks.github}
-            onChange={handleChange}
-            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
-          />
+        
+        {/* Social Links Section */}
+        <div className="space-y-2">
+          <div>
+            <Label htmlFor="socialLinks.github" className="text-gray-300">
+              GitHub Link
+            </Label>
+            <div className="flex items-center space-x-2">
+              <Input
+                id="socialLinks.github"
+                name="socialLinks.github"
+                value={props.socialLinks.github}
+                onChange={handleChange}
+                className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
+              />
+              {props.socialLinks.github && (
+                <FaGithub className="text-white text-xl" />
+              )}
+            </div>
+          </div>
+          
+          <div>
+            <Label htmlFor="socialLinks.linkedin" className="text-gray-300">
+              LinkedIn Link
+            </Label>
+            <div className="flex items-center space-x-2">
+              <Input
+                id="socialLinks.linkedin"
+                name="socialLinks.linkedin"
+                value={props.socialLinks.linkedin}
+                onChange={handleChange}
+                className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
+              />
+              {props.socialLinks.linkedin && (
+                <FaLinkedin className="text-white text-xl" />
+              )}
+            </div>
+          </div>
         </div>
-        <div>
-          <Label htmlFor="socialLinks.linkedin" className="text-gray-300">
-            LinkedIn Link
-          </Label>
-          <Input
-            id="socialLinks.linkedin"
-            name="socialLinks.linkedin"
-            value={props.socialLinks.linkedin}
-            onChange={handleChange}
-            className="bg-gray-800 text-white border-gray-600 focus:border-purple-500 focus:ring-purple-500 rounded-md"
-          />
-        </div>
+        
         <div>
           <Label htmlFor="pfpShape" className="text-gray-300">
             Profile Picture Shape
