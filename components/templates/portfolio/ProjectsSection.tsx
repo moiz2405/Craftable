@@ -1,8 +1,8 @@
+import type React from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Github, ExternalLink, Layers, Smartphone, Globe } from "lucide-react"
 import Link from "next/link"
-import type React from "react" // Added import for React
 
 interface Project {
     title: string
@@ -15,11 +15,11 @@ interface Project {
 
 interface ProjectsSectionProps {
     style?: "style1" | "style2" | "style3" | "style4" | "style5"
-    title: string
-    subtitle: string
-    buttonText1: string
-    buttonLink1: string
-    projects: Project[]
+    title?: string
+    subtitle?: string
+    buttonText1?: string
+    buttonLink1?: string
+    projects?: Project[]
 }
 
 const iconMap: { [key: string]: React.ReactNode } = {
@@ -28,13 +28,41 @@ const iconMap: { [key: string]: React.ReactNode } = {
     Globe: <Globe className="h-6 w-6" />,
 }
 
+const defaultProjects: Project[] = [
+    {
+        title: "Project 1",
+        description: "This is a description of Project 1. It's a web application built with React and Next.js.",
+        icon: "Layers",
+        github: "https://github.com/username/project1",
+        demo: "https://project1-demo.com",
+        tags: ["React", "Next.js", "TypeScript"],
+    },
+    {
+        title: "Project 2",
+        description: "Project 2 is a mobile app developed using React Native. It features real-time data synchronization.",
+        icon: "Smartphone",
+        github: "https://github.com/username/project2",
+        demo: "https://project2-demo.com",
+        tags: ["React Native", "Firebase", "Mobile"],
+    },
+    {
+        title: "Project 3",
+        description:
+            "A global web platform that connects users from different countries. Built with cutting-edge technologies.",
+        icon: "Globe",
+        github: "https://github.com/username/project3",
+        demo: "https://project3-demo.com",
+        tags: ["Vue.js", "Node.js", "MongoDB"],
+    },
+]
+
 export function ProjectsSection({
     style = "style1",
-    title = "Projects",
-    subtitle = "Here are some of my projects",
-    buttonText1 = "View All",
+    title = "My Projects",
+    subtitle = "Check out some of my recent work",
+    buttonText1 = "View All Projects",
     buttonLink1 = "#",
-    projects = [],
+    projects = defaultProjects,
 }: ProjectsSectionProps) {
     const containerVariants = {
         hidden: { opacity: 0 },
