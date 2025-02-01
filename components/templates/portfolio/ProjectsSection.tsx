@@ -59,9 +59,9 @@ const defaultProjects: Project[] = [
 export function ProjectsSection({
     style = "style1",
     title = "My Projects",
-    subtitle = "Check out some of my recent work",
-    buttonText1 = "View All Projects",
-    buttonLink1 = "#",
+    subtitle = "",
+    buttonText1 = "",
+    buttonLink1 = "",
     projects = defaultProjects,
 }: ProjectsSectionProps) {
     const containerVariants = {
@@ -118,14 +118,14 @@ export function ProjectsSection({
         <section className={`py-16 ${style}`}>
             <div className="container mx-auto px-4">
                 <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-12">
-                    <div className="text-center">
+                    <div className="">
                         <h2 className="text-3xl font-bold text-white mb-4">{title}</h2>
-                        <p className="text-xl text-gray-400 mb-8">{subtitle}</p>
-                        {buttonText1 && buttonLink1 && (
+                        {/* <p className="text-xl text-gray-400 mb-8">{subtitle}</p> */}
+                        {/* {buttonText1 && buttonLink1 && (
                             <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
                                 <Link href={buttonLink1}>{buttonText1}</Link>
-                            </Button>
-                        )}
+                            </Button> */}
+                        {/* )} */}
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">{projects.map(renderProjectCard)}</div>
                 </motion.div>
